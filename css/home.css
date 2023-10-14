@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    box-sizing: border-box;
+  }
+  
+  .c-item {
+    height: 30vw;
+    position: relative;
+  }
+
+  .c-img{
+    transform: translateY(-4vw);
+    
+  }
+
+  .c-img-2{
+    transform: translateY(-13vw);
+  
+  }
+
+  .c-img-3{
+    transform: translateY(-7vw);
+  }
+  
+  .sagano-insiders{
+    z-index: 1;
+    font-size: 10vw;
+    color: #fff;
+    position: absolute;
+    transform: translateX(12vw) translateY(-13.3vw);
+  }

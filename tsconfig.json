@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "rootDir": "./ts",
+    "outDir": "./js",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "lib": ["ES2015","DOM"]
+  },
+  "include": ["./ts/**/*.ts"],
+  "exclude": ["node_modules"]
+}
