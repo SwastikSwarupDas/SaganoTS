@@ -61,7 +61,8 @@ function loadMensClothes() {
                         var img = document.createElement("img");
                         products.classList.add("productCard");
                         imageHolder.classList.add("imageHolder");
-                        img.setAttribute("src", product.image);
+                        img.setAttribute("src", element.image);
+                        img.classList.add("c-img");
                         imageHolder.appendChild(img);
                         products.appendChild(imageHolder);
                         PRODUCT_DISPLAY.appendChild(products);

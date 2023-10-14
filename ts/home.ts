@@ -1,6 +1,3 @@
-
-
-
 // selecting the main divs to display stuff
 
 const PRODUCT_DISPLAY = document.querySelector('.menProductDisplay') as HTMLBodyElement;
@@ -16,8 +13,8 @@ if (localStorage.getItem('cart') === null) {
 
 async function loadMensClothes(): Promise<void> {
     
-    let raw:any = await fetch('https://fakestoreapi.com/products/category/men\'s clothing');
-    let product: any = await raw.json();
+    let raw     :   any = await fetch('https://fakestoreapi.com/products/category/men\'s clothing');
+    let product :   any = await raw.json();
     
     console.log(product);
     
@@ -27,17 +24,17 @@ async function loadMensClothes(): Promise<void> {
         let imageHolder : HTMLDivElement    = document.createElement("div");
         let img         : HTMLImageElement  = document.createElement("img");
 
-
         products.classList.add("productCard");
         imageHolder.classList.add("imageHolder");
 
-   
-        img.setAttribute("src",product.image);   
+        img.setAttribute("src",element.image);
+        img.classList.add("c-img");
 
         imageHolder.appendChild(img);
         products.appendChild(imageHolder);
 
         PRODUCT_DISPLAY.appendChild(products);
+
     });
 }
 
