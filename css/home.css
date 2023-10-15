@@ -26,8 +26,43 @@
   background: #555;
 }
 
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3vw 2vw;
+  background-color: #fff;
+  overflow: hidden;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+nav .logo h1{
+  font-size: 2vw;
+  font-weight: 100;
+}
+
+nav .logo h1 a{
+  text-decoration: none;
+  color: #000;
+}
+
+.links{
+  display: flex;
+  gap: 2vw;
+}
+
+.links a{
+  color: black;
+  font-size: 1vw;
+  letter-spacing: 0.2vw;
+  text-decoration: none;
+}
+
   
   .c-item {
+    margin-top: 3.4vw;
     height: 30vw;
     position: relative;
     overflow-y: hidden;
@@ -46,16 +81,17 @@
     transform: translateY(-7vw);
   }
   
-  /* .sagano-insiders{
+  .sagano-insiders{
     z-index: 1;
     font-size: 10vw;
     color: #fff;
     position: absolute;
     transform: translateX(12vw) translateY(-13.3vw);
-  } */
+  }
 
   .menProductDisplay, .womenProductDisplay{
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-evenly;
     margin-bottom: 4vw;
   }
@@ -91,6 +127,29 @@
   .title-item{
     font-size: 1vw;
   }
+
+  footer{
+    background-color: rgb(246, 246, 246);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-size: cover;
+    background-position: center 90%;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 1vw 3vw;
+    backdrop-filter: blur(5px);
+}
+
+footer h1{
+  font-size: 2vw;
+}
+
+.right{
+    font-size: 0.8vw;
+    display: flex;
+    gap: 3vw;
+}
 
   
 
