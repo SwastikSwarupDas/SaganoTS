@@ -56,16 +56,24 @@ function loadMensClothes() {
                     product = _a.sent();
                     console.log(product);
                     product.forEach(function (element) {
-                        var products = document.createElement("div");
+                        var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
                         var img = document.createElement("img");
-                        products.classList.add("productCard");
+                        var title = document.createElement("h1");
+                        var productTextDiv = document.createElement("div");
+                        var titleText = document.createTextNode(element.title);
+                        productTextDiv.classList.add("productTextDiv");
+                        productCards.classList.add("products-cards");
                         imageHolder.classList.add("imageHolder");
+                        title.classList.add("title-item");
                         img.setAttribute("src", element.image);
-                        img.classList.add("c-img");
+                        img.classList.add("p-img");
                         imageHolder.appendChild(img);
-                        products.appendChild(imageHolder);
-                        PRODUCT_DISPLAY.appendChild(products);
+                        productCards.appendChild(imageHolder);
+                        productTextDiv.appendChild(title);
+                        title.appendChild(titleText);
+                        productCards.appendChild(productTextDiv);
+                        PRODUCT_DISPLAY.appendChild(productCards);
                     });
                     return [2 /*return*/];
             }

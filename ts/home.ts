@@ -1,7 +1,7 @@
 // selecting the main divs to display stuff
 
 const PRODUCT_DISPLAY = document.querySelector('.menProductDisplay') as HTMLBodyElement;
-const WOMEN_PRODUCT_DISPLAY = document.querySelector('.womenProductDisplay');
+const WOMEN_PRODUCT_DISPLAY = document.querySelector('.womenProductDisplay') as HTMLBodyElement;
 
 console.log(PRODUCT_DISPLAY.innerText);
 
@@ -20,20 +20,28 @@ async function loadMensClothes(): Promise<void> {
     
     product.forEach((element: any) => {
     
-        let products    : HTMLDivElement    = document.createElement("div");
-        let imageHolder : HTMLDivElement    = document.createElement("div");
-        let img         : HTMLImageElement  = document.createElement("img");
+        let productCards      : HTMLDivElement        = document.createElement("div");
+        let imageHolder     : HTMLDivElement        = document.createElement("div");
+        let img             : HTMLImageElement      = document.createElement("img");
+        let title           : HTMLHeadingElement    = document.createElement("h1");
+        let productTextDiv  : HTMLDivElement        = document.createElement("div");
+        let titleText       : Text                  = document.createTextNode(element.title);
 
-        products.classList.add("productCard");
+        productTextDiv.classList.add("productTextDiv");
+        productCards.classList.add("products-cards");
         imageHolder.classList.add("imageHolder");
+        title.classList.add("title-item");
 
         img.setAttribute("src",element.image);
-        img.classList.add("c-img");
+        img.classList.add("p-img");
 
         imageHolder.appendChild(img);
-        products.appendChild(imageHolder);
+        productCards.appendChild(imageHolder);
+        productTextDiv.appendChild(title);
+        title.appendChild(titleText);
+        productCards.appendChild(productTextDiv);
 
-        PRODUCT_DISPLAY.appendChild(products);
+        PRODUCT_DISPLAY.appendChild(productCards);
 
     });
 }
