@@ -20,7 +20,7 @@ async function loadMensClothes(): Promise<void> {
     
     product.forEach((element: any) => {
     
-        let productCards      : HTMLDivElement        = document.createElement("div");
+        let productCards    : HTMLDivElement        = document.createElement("div");
         let imageHolder     : HTMLDivElement        = document.createElement("div");
         let img             : HTMLImageElement      = document.createElement("img");
         let title           : HTMLHeadingElement    = document.createElement("h1");
@@ -42,6 +42,10 @@ async function loadMensClothes(): Promise<void> {
         productCards.appendChild(productTextDiv);
 
         PRODUCT_DISPLAY.appendChild(productCards);
+
+        productCards.addEventListener("click", () => {
+            window.location.href = `product.html?id=${element.id}`;
+        });
 
     });
 }
@@ -78,8 +82,12 @@ async function loadWomensClothes(): Promise<void> {
 
         WOMEN_PRODUCT_DISPLAY.appendChild(productCards);
 
+        productCards.addEventListener("click", () => {
+            window.location.href = `product.html?id=${element.id}`;
+        });
+
     });
-}
+ }
 
 loadMensClothes();
 loadWomensClothes();

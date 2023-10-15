@@ -1,0 +1,206 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+    overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.4vw;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+nav{
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    padding         : 0.3vw 2vw;
+    background-color: #fff;
+    overflow        : hidden;
+    position        : fixed;
+    z-index         : 2;
+    width           : 100%;
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+}
+
+nav .logo h1{
+    font-size       : 2vw;
+    font-weight     : 100;
+}
+
+nav .logo h1 a{
+    text-decoration : none;
+    color           : #000;
+}
+
+.links{
+    display         : flex;
+    gap             : 2vw;
+}
+
+.links a{
+    color           : black;
+    font-size       : 1vw;
+    letter-spacing  : 0.2vw;
+    text-decoration : none;
+}
+
+.product{
+    margin-top      : 3.4vw;
+    display         : flex;
+    gap             : 2vw;
+    align-items     : center;
+    justify-content : space-evenly;
+}
+
+.bag-btn{
+    width           : 14vw;
+    background-color: #fff;
+    padding         : 1vw 3vw;
+    border          : 2px solid rgba(110,160,160,0.2);
+    border-radius   : 20px ;
+    font-size       : 1.2vw;
+    color           : rgba(100,100,100,0.7);
+}
+
+.cat-p{
+    font-size       : 1vw ;
+    font-weight     : 100;
+    letter-spacing  : 0.2vw;
+    color           : rgb(120,150,150) ;
+}
+
+.p-title{
+    font-size       : 1.5vw ;
+    letter-spacing  : 0.1vw ;
+}
+
+.desc{
+    color           : rgb(90,90,90) ;
+    font-size       : 1.1vw ;
+    line-height     : 1.5vw;
+}
+
+.p-img{
+    margin          : 2vw 4vw;
+    width           : 28vw ;
+}
+
+.p-img-main{
+    width           : 25vw;
+}
+
+.price{
+    font-size       : 1vw;
+    color           : rgb(40,40,40);
+    letter-spacing  : 0.08vw;
+}
+
+.p-qty{
+    letter-spacing  : 0.05vw ;
+    color           : rgba(40,40,40,0.5) ;
+}
+
+.p-desc{
+    display         : flex;
+    width           : 40vw;
+    flex-direction  : column;
+    padding         : 3vw 5vw;
+    gap             : 2vw;
+}
+
+
+.menProductDisplay, .womenProductDisplay{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    margin-bottom: 4vw;
+}
+
+.p-img-cat-bottom{
+    width: 15vw;
+}
+
+.imageHolder{
+    margin: 0vw 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25vw;
+    overflow-y: hidden;
+}
+
+.products-cards{
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.fade_rule {
+    height: 1px;
+    background-color: #E6E6E6;
+    width: 100vw;
+    margin: 3vw 0;
+    background-image: linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+    background-image: -o-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+    background-image: -moz-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+    background-image: -webkit-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+    background-image: -ms-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+    background-image: -webkit-gradient( linear, left bottom, right bottom, color-stop(0.02, white), color-stop(0.5, gray), color-stop(0.98, white) );
+}
+
+.title-item{
+    font-size: 1vw;
+    font-weight: 100;
+  }
+  
+  .catLabels{
+    font-size: 1.2vw;
+    margin: 2vw 0vw 1vw 3vw;
+    font-weight: 200;
+    color: rgba(0,0,0,0.5);
+  }
+
+
+footer{
+    box-shadow      : 0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+    background-color: rgb(246, 246, 246);
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+    background-size : cover;
+    background-position: center 90%;
+    background-repeat: no-repeat;
+    position        : relative;
+    padding         : 1vw 3vw;
+    backdrop-filter : blur(5px);    
+}
+
+footer h1{
+    font-size: 2vw;
+}
+  
+.right{
+      font-size: 0.8vw;
+      display: flex;
+      gap: 3vw;
+}
+  

@@ -36,6 +36,7 @@ nav{
   position: fixed;
   z-index: 2;
   width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
 }
 
 nav .logo h1{
@@ -129,6 +130,7 @@ nav .logo h1 a{
   }
 
   footer{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
     background-color: rgb(246, 246, 246);
     display: flex;
     justify-content: space-between;
