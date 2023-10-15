@@ -80,4 +80,42 @@ function loadMensClothes() {
         });
     });
 }
+function loadWomensClothes() {
+    return __awaiter(this, void 0, void 0, function () {
+        var raw, product;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch('https://fakestoreapi.com/products/category/women\'s clothing?limit=4')];
+                case 1:
+                    raw = _a.sent();
+                    return [4 /*yield*/, raw.json()];
+                case 2:
+                    product = _a.sent();
+                    console.log(product);
+                    product.forEach(function (element) {
+                        var productCards = document.createElement("div");
+                        var imageHolder = document.createElement("div");
+                        var img = document.createElement("img");
+                        var title = document.createElement("h1");
+                        var productTextDiv = document.createElement("div");
+                        var titleText = document.createTextNode(element.title);
+                        productTextDiv.classList.add("productTextDiv");
+                        productCards.classList.add("products-cards");
+                        imageHolder.classList.add("imageHolder");
+                        title.classList.add("title-item");
+                        img.setAttribute("src", element.image);
+                        img.classList.add("p-img");
+                        imageHolder.appendChild(img);
+                        productCards.appendChild(imageHolder);
+                        productTextDiv.appendChild(title);
+                        title.appendChild(titleText);
+                        productCards.appendChild(productTextDiv);
+                        WOMEN_PRODUCT_DISPLAY.appendChild(productCards);
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 loadMensClothes();
+loadWomensClothes();

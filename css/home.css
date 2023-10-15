@@ -5,6 +5,27 @@
     box-sizing: border-box;
     overflow-x: hidden;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.4vw;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
   
   .c-item {
     height: 30vw;
@@ -35,7 +56,7 @@
 
   .menProductDisplay, .womenProductDisplay{
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-evenly;
     margin-bottom: 4vw;
   }
 
@@ -54,10 +75,11 @@
   }
 
   .products-cards{
+    width: 20vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
   
   .title-item{
