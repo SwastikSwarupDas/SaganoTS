@@ -110,16 +110,24 @@ async function loadWomensClothes2(): Promise<void> {
         let title           : HTMLHeadingElement    = document.createElement("h1");
         let productTextDiv  : HTMLDivElement        = document.createElement("div");
         let titleText       : Text                  = document.createTextNode(element.title);
+        let quickViewDiv    : HTMLDivElement        = document.createElement("div");
+        let qDivButton      : HTMLButtonElement     = document.createElement("button");
+        let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
 
         productTextDiv.classList.add("productTextDiv");
         productCards.classList.add("products-cards");
         imageHolder.classList.add("imageHolder");
         title.classList.add("title-item");
+        quickViewDiv.classList.add("q-v-div");
+        qDivButton.classList.add("q-div-btn");
 
         img.setAttribute("src",element.image);
         img.classList.add("p-img-cat-bottom");
 
         imageHolder.appendChild(img);
+             imageHolder.appendChild(quickViewDiv);
+            quickViewDiv.appendChild(qDivButton);
+            qDivButton.appendChild(qDivButtonText);
         productCards.appendChild(imageHolder);
         productTextDiv.appendChild(title);
         title.appendChild(titleText);
