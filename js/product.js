@@ -38,23 +38,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var PRODUCT = document.querySelector(".product");
 var WOMEN_PRODUCT_DISPLAY2 = document.querySelector('.womenProductDisplay');
 var MEN_PRODUCT_DISPLAY2 = document.querySelector('.menProductDisplay');
-var cart = JSON.parse(localStorage.getItem("cart") || "[]") || "";
 var URL_PARAMS = new URLSearchParams(window.location.search);
 var PRODUCT_ID = URL_PARAMS.get('id');
 console.log(PRODUCT_ID);
 function loadProduct(PRODUCT_ID) {
+    var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var response, productData, productImage, productDescription, category, productTitle, desc, price, productQuantity, bagButton, img, buttonText, categoryText, productTitleText, descText, priceText, quantityText;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var response, productData, productImage, productDescription, category, productTitle, desc, price, productQuantity, bagButton, img, buttonText, categoryText, productTitleText, descText, priceText, quantityText, cartString, cart, productIndex, quantity;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     console.log(PRODUCT_ID);
                     return [4 /*yield*/, fetch("https://fakestoreapi.com/products/".concat(PRODUCT_ID))];
                 case 1:
-                    response = _a.sent();
+                    response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    productData = _a.sent();
+                    productData = _b.sent();
                     productImage = document.createElement("div");
                     productDescription = document.createElement("div");
                     category = document.createElement("div");
@@ -95,10 +95,16 @@ function loadProduct(PRODUCT_ID) {
                     productImage.appendChild(img);
                     PRODUCT.appendChild(productImage);
                     PRODUCT.appendChild(productDescription);
+                    cartString = localStorage.getItem("cart") || '';
+                    cart = JSON.parse(cartString || '[]');
+                    productIndex = cart.findIndex(function (p) { return p.id == PRODUCT_ID; });
+                    console.log(productIndex);
+                    if ((_a = cart[productIndex]) === null || _a === void 0 ? void 0 : _a.quantity) {
+                        quantity = cart[productIndex].quantity;
+                        productQuantity.innerText = "".concat(quantity, " in bag");
+                    }
+                    console.log(productIndex);
                     bagButton.addEventListener("click", function () {
-                        // Use a type assertion to ensure the value is treated as a string
-                        var cartString = localStorage.getItem("cart") || '';
-                        var cart = JSON.parse(cartString || '[]');
                         var existingProduct = cart.find(function (product) { return product.id === productData.id; });
                         if (existingProduct) {
                             existingProduct.quantity += 1;

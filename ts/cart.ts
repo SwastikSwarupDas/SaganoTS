@@ -1,4 +1,4 @@
-let cart2 : string  = JSON.parse(localStorage.getItem("cart") || "[]") || "";
+let cart2 = JSON.parse(localStorage.getItem("cart") || "[]") || "";
 
 const BAGINATION    = document.querySelector(".bagination")   as HTMLDivElement;
 const BILL          = document.querySelector(".tab")          as HTMLDivElement;
@@ -76,34 +76,34 @@ async function loadCart() : Promise<void> {
         
         BAGINATION.appendChild(productDiv);
 
-        // addButton.addEventListener("click",function(){
-        //     product.quantity += 1;
-        //     localStorage.setItem("cart", JSON.stringify(cart)); 
-        //     quantity.innerText=product.quantity+" in bag";
-        //     billList.innerText="¥ "+product.price*1500 + " x" + product.quantity;
-        // });
+        addButton.addEventListener("click",function(){
+            product.quantity += 1;
+            localStorage.setItem("cart", JSON.stringify(cart2)); 
+            quantity.innerText=product.quantity+" in bag";
+            billList.innerText="¥ "+product.price*1500 + " x" + product.quantity;
+        });
 
-        // minusButton.addEventListener("click",function(){
-        //     product.quantity -= 1;
-        //     let productIndex = cart.findIndex(p => p.id == product.id);
-        //     if (product.quantity === 0) {
-        //         cart.splice(productIndex, 1);
-        //         location.reload();
-        //     }
-        //     localStorage.setItem("cart", JSON.stringify(cart));
-        //     billList.innerText="¥ " +product.price*1500 + " x" + product.quantity;
-        //     quantity.innerText=product.quantity+" in bag";  
+        minusButton.addEventListener("click",function(){
+            product.quantity -= 1;
+            let productIndex = cart2.findIndex(( p : any ) => p.id == product.id);
+            if (product.quantity === 0) {
+                cart2.splice(productIndex, 1);
+                location.reload();
+            }
+            localStorage.setItem("cart", JSON.stringify(cart2));
+            billList.innerText="¥ " +product.price*1500 + " x" + product.quantity;
+            quantity.innerText=product.quantity+" in bag";  
         
-        // });
+        });
         
-        // removeButton.addEventListener("click",function(){
-        //     let productIndex = cart.findIndex(product => product.id == product.id);
-        //     if (productIndex > -1) {
-        //         cart.splice(productIndex, 1);
-        //     }
-        //     localStorage.setItem("cart", JSON.stringify(cart)); 
-        //     location.reload();
-        // });
+        removeButton.addEventListener("click",function(){
+            let productIndex = cart2.findIndex(( product : any ) => product.id == product.id);
+            if (productIndex > -1) {
+                cart2.splice(productIndex, 1);
+            }
+            localStorage.setItem("cart", JSON.stringify(cart2)); 
+            location.reload();
+        });
 
     }
 }

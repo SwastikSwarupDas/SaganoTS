@@ -3,8 +3,6 @@ const PRODUCT = document.querySelector(".product") as HTMLBodyElement;
 const WOMEN_PRODUCT_DISPLAY2 = document.querySelector('.womenProductDisplay') as HTMLBodyElement;
 const MEN_PRODUCT_DISPLAY2 = document.querySelector('.menProductDisplay') as HTMLBodyElement;
 
-let cart: string = JSON.parse(localStorage.getItem("cart") || "[]") || "";
-
 const URL_PARAMS = new URLSearchParams(window.location.search);
 const PRODUCT_ID = URL_PARAMS.get('id');
 
@@ -62,12 +60,23 @@ async function loadProduct(PRODUCT_ID   : string | null ) : Promise<void> {
     PRODUCT.appendChild(productImage);
     PRODUCT.appendChild(productDescription);
 
-    bagButton.addEventListener("click", function() {
-        // Use a type assertion to ensure the value is treated as a string
-        const cartString: string | null = localStorage.getItem("cart") || '';
+    const cartString: string | null = localStorage.getItem("cart") || '';
         
-        let cart: any[] = JSON.parse(cartString || '[]');
-    
+    let cart: any[] = JSON.parse(cartString || '[]');
+      
+    let productIndex = cart.findIndex(( p : any)=>p.id==PRODUCT_ID);
+
+    console.log(productIndex);
+
+    if (cart[productIndex]?.quantity) {
+        let quantity: number = cart[productIndex].quantity;
+        productQuantity.innerText = `${quantity} in bag`;
+    }
+
+    console.log(productIndex);
+
+    bagButton.addEventListener("click", function() {
+        
         let existingProduct = cart.find((product: any) => product.id === productData.id);
     
         if (existingProduct) {

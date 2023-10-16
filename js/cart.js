@@ -42,85 +42,122 @@ var CARTINATION = document.querySelector(".cartination");
 var EMPTY_CART = document.querySelector(".emptyCart");
 function loadCart() {
     return __awaiter(this, void 0, void 0, function () {
-        var i, product, raw, productData, removeButton, removeButtonText, buttons, addButton, addButtonText, minusButton, minusButtonText, productDiv, productDesc, imageHolder, img, productTitle, titleText, billTitleText, price, priceText, quantity, quantityText, billList, billItemName, billPrice, billItem;
+        var _loop_1, i;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    _loop_1 = function (i) {
+                        var product, raw, productData, removeButton, removeButtonText, buttons, addButton, addButtonText, minusButton, minusButtonText, productDiv, productDesc, imageHolder, img, productTitle, titleText, billTitleText, price, priceText, quantity, quantityText, billList, billItemName, billPrice, billItem;
+                        return __generator(this, function (_b) {
+                            switch (_b.label) {
+                                case 0:
+                                    product = cart2[i];
+                                    return [4 /*yield*/, fetch("https://fakestoreapi.com/products/".concat(product.id))];
+                                case 1:
+                                    raw = _b.sent();
+                                    return [4 /*yield*/, raw.json()];
+                                case 2:
+                                    productData = _b.sent();
+                                    removeButton = document.createElement("button");
+                                    removeButtonText = document.createTextNode("remove");
+                                    buttons = document.createElement("div");
+                                    addButton = document.createElement("button");
+                                    addButtonText = document.createTextNode("add one");
+                                    minusButton = document.createElement("button");
+                                    minusButtonText = document.createTextNode("take one out");
+                                    productDiv = document.createElement("div");
+                                    productDesc = document.createElement("div");
+                                    imageHolder = document.createElement("div");
+                                    img = document.createElement("img");
+                                    productTitle = document.createElement("div");
+                                    titleText = document.createTextNode(product.title);
+                                    billTitleText = document.createTextNode(product.title.toUpperCase());
+                                    price = document.createElement("div");
+                                    priceText = document.createTextNode("¥ " + productData.price * 1500);
+                                    quantity = document.createElement("div");
+                                    quantityText = document.createTextNode(product.quantity + " in bag");
+                                    billList = document.createElement("div");
+                                    billItemName = document.createElement("div");
+                                    billPrice = document.createTextNode("¥ " + productData.price * 1500 + " x" + product.quantity);
+                                    billItem = document.createElement("div");
+                                    removeButton.classList.add("rmv-btn");
+                                    buttons.classList.add("btn-s");
+                                    addButton.classList.add("add-btn");
+                                    minusButton.classList.add("minus-btn");
+                                    productDiv.classList.add("prod-div");
+                                    productDesc.classList.add("prod-desc");
+                                    imageHolder.classList.add("img-holder");
+                                    img.classList.add("img-cart-main");
+                                    productTitle.classList.add("p-cart-title");
+                                    price.classList.add("cart-price");
+                                    quantity.classList.add("cart-qty");
+                                    billList.classList.add("bill-list");
+                                    billItemName.classList.add("bill-item-name");
+                                    billItem.classList.add("bill-item");
+                                    img.setAttribute("src", productData.image);
+                                    removeButton.appendChild(removeButtonText);
+                                    addButton.appendChild(addButtonText);
+                                    minusButton.appendChild(minusButtonText);
+                                    buttons.appendChild(addButton);
+                                    buttons.appendChild(minusButton);
+                                    buttons.appendChild(removeButton);
+                                    productTitle.appendChild(titleText);
+                                    quantity.appendChild(quantityText);
+                                    price.appendChild(priceText);
+                                    productDesc.appendChild(productTitle);
+                                    productDesc.appendChild(price);
+                                    productDesc.appendChild(quantity);
+                                    productDesc.appendChild(buttons);
+                                    imageHolder.appendChild(img);
+                                    productDiv.appendChild(imageHolder);
+                                    productDiv.appendChild(productDesc);
+                                    billItem.appendChild(billItemName);
+                                    billItem.appendChild(billList);
+                                    billItemName.appendChild(billTitleText);
+                                    billList.appendChild(billPrice);
+                                    BILL.appendChild(billItem);
+                                    BAGINATION.appendChild(productDiv);
+                                    addButton.addEventListener("click", function () {
+                                        product.quantity += 1;
+                                        localStorage.setItem("cart", JSON.stringify(cart2));
+                                        quantity.innerText = product.quantity + " in bag";
+                                        billList.innerText = "¥ " + product.price * 1500 + " x" + product.quantity;
+                                    });
+                                    minusButton.addEventListener("click", function () {
+                                        product.quantity -= 1;
+                                        var productIndex = cart2.findIndex(function (p) { return p.id == product.id; });
+                                        if (product.quantity === 0) {
+                                            cart2.splice(productIndex, 1);
+                                            location.reload();
+                                        }
+                                        localStorage.setItem("cart", JSON.stringify(cart2));
+                                        billList.innerText = "¥ " + product.price * 1500 + " x" + product.quantity;
+                                        quantity.innerText = product.quantity + " in bag";
+                                    });
+                                    removeButton.addEventListener("click", function () {
+                                        var productIndex = cart2.findIndex(function (product) { return product.id == product.id; });
+                                        if (productIndex > -1) {
+                                            cart2.splice(productIndex, 1);
+                                        }
+                                        localStorage.setItem("cart", JSON.stringify(cart2));
+                                        location.reload();
+                                    });
+                                    return [2 /*return*/];
+                            }
+                        });
+                    };
                     i = 0;
                     _a.label = 1;
                 case 1:
-                    if (!(i < cart2.length)) return [3 /*break*/, 5];
-                    product = cart2[i];
-                    return [4 /*yield*/, fetch("https://fakestoreapi.com/products/".concat(product.id))];
+                    if (!(i < cart2.length)) return [3 /*break*/, 4];
+                    return [5 /*yield**/, _loop_1(i)];
                 case 2:
-                    raw = _a.sent();
-                    return [4 /*yield*/, raw.json()];
+                    _a.sent();
+                    _a.label = 3;
                 case 3:
-                    productData = _a.sent();
-                    removeButton = document.createElement("button");
-                    removeButtonText = document.createTextNode("remove");
-                    buttons = document.createElement("div");
-                    addButton = document.createElement("button");
-                    addButtonText = document.createTextNode("add one");
-                    minusButton = document.createElement("button");
-                    minusButtonText = document.createTextNode("take one out");
-                    productDiv = document.createElement("div");
-                    productDesc = document.createElement("div");
-                    imageHolder = document.createElement("div");
-                    img = document.createElement("img");
-                    productTitle = document.createElement("div");
-                    titleText = document.createTextNode(product.title);
-                    billTitleText = document.createTextNode(product.title.toUpperCase());
-                    price = document.createElement("div");
-                    priceText = document.createTextNode("¥ " + productData.price * 1500);
-                    quantity = document.createElement("div");
-                    quantityText = document.createTextNode(product.quantity + " in bag");
-                    billList = document.createElement("div");
-                    billItemName = document.createElement("div");
-                    billPrice = document.createTextNode("¥ " + productData.price * 1500 + " x" + product.quantity);
-                    billItem = document.createElement("div");
-                    removeButton.classList.add("rmv-btn");
-                    buttons.classList.add("btn-s");
-                    addButton.classList.add("add-btn");
-                    minusButton.classList.add("minus-btn");
-                    productDiv.classList.add("prod-div");
-                    productDesc.classList.add("prod-desc");
-                    imageHolder.classList.add("img-holder");
-                    img.classList.add("img-cart-main");
-                    productTitle.classList.add("p-cart-title");
-                    price.classList.add("cart-price");
-                    quantity.classList.add("cart-qty");
-                    billList.classList.add("bill-list");
-                    billItemName.classList.add("bill-item-name");
-                    billItem.classList.add("bill-item");
-                    img.setAttribute("src", productData.image);
-                    removeButton.appendChild(removeButtonText);
-                    addButton.appendChild(addButtonText);
-                    minusButton.appendChild(minusButtonText);
-                    buttons.appendChild(addButton);
-                    buttons.appendChild(minusButton);
-                    buttons.appendChild(removeButton);
-                    productTitle.appendChild(titleText);
-                    quantity.appendChild(quantityText);
-                    price.appendChild(priceText);
-                    productDesc.appendChild(productTitle);
-                    productDesc.appendChild(price);
-                    productDesc.appendChild(quantity);
-                    productDesc.appendChild(buttons);
-                    imageHolder.appendChild(img);
-                    productDiv.appendChild(imageHolder);
-                    productDiv.appendChild(productDesc);
-                    billItem.appendChild(billItemName);
-                    billItem.appendChild(billList);
-                    billItemName.appendChild(billTitleText);
-                    billList.appendChild(billPrice);
-                    BILL.appendChild(billItem);
-                    BAGINATION.appendChild(productDiv);
-                    _a.label = 4;
-                case 4:
                     i++;
                     return [3 /*break*/, 1];
-                case 5: return [2 /*return*/];
+                case 4: return [2 /*return*/];
             }
         });
     });
