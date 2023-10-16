@@ -39,6 +39,11 @@ nav{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
 }
 
+nav .logo{
+  display: flex;
+  align-items: center;
+}
+
 nav .logo h1{
   font-size: 2vw;
   font-weight: 100;
@@ -51,7 +56,30 @@ nav .logo h1 a{
 
 .links{
   display: flex;
+  align-items: center;
   gap: 2vw;
+}
+
+form{
+  background-color: rgb(230, 230, 230);
+  border-radius: 8px;
+  padding: 0.2vw 1vw;
+  color:  #aeaeae;;
+}
+
+form input{
+  background-color: rgba(0,0,0,0);
+  caret-color:  #aeaeae;;
+  caret-shape:block;
+  width: 14vw;
+  border: 0px;
+  outline: none;
+}
+
+form ::placeholder{
+  color: #aeaeae;
+  font-weight: 100;
+  font-size: 1vw;
 }
 
 .links a{
@@ -90,7 +118,7 @@ nav .logo h1 a{
     transform: translateX(12vw) translateY(-13.3vw);
   }
 
-  .menProductDisplay, .womenProductDisplay{
+  .p-dis{
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-evenly;

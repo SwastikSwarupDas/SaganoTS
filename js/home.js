@@ -36,8 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var PRODUCT_DISPLAY = document.querySelector('.menProductDisplay');
-var WOMEN_PRODUCT_DISPLAY = document.querySelector('.womenProductDisplay');
+var PRODUCT_DISPLAY = document.querySelector('.productDisplay');
+var SEARCH_SELECT = document.createElement("div");
+var SEARCH_BAR = document.querySelector("form input");
+var PRODUCTROPICA = document.querySelector('.productropica');
+// const WOMEN_PRODUCT_DISPLAY = document.querySelector('.womenProductDisplay') as HTMLBodyElement;
 console.log(PRODUCT_DISPLAY.innerText);
 // Checking if there exists a Cart object, and if not, creating it.
 if (localStorage.getItem('cart') === null) {
@@ -45,16 +48,25 @@ if (localStorage.getItem('cart') === null) {
 }
 function loadMensClothes() {
     return __awaiter(this, void 0, void 0, function () {
-        var raw, product;
+        var catLabels, menProductDisplay, raw, product;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('https://fakestoreapi.com/products/category/men\'s clothing')];
+                case 0:
+                    PRODUCTROPICA.innerHTML = '';
+                    console.log("loading men clothes");
+                    catLabels = document.createElement("div");
+                    menProductDisplay = document.createElement("div");
+                    catLabels.innerText = "MEN";
+                    catLabels.classList.add("catLabels");
+                    menProductDisplay.classList.add("p-dis");
+                    PRODUCT_DISPLAY.appendChild(catLabels);
+                    PRODUCT_DISPLAY.appendChild(menProductDisplay);
+                    return [4 /*yield*/, fetch('https://fakestoreapi.com/products/category/men\'s clothing')];
                 case 1:
                     raw = _a.sent();
                     return [4 /*yield*/, raw.json()];
                 case 2:
                     product = _a.sent();
-                    console.log(product);
                     product.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
@@ -81,7 +93,7 @@ function loadMensClothes() {
                         productTextDiv.appendChild(title);
                         title.appendChild(titleText);
                         productCards.appendChild(productTextDiv);
-                        PRODUCT_DISPLAY.appendChild(productCards);
+                        menProductDisplay.appendChild(productCards);
                         productCards.addEventListener("click", function () {
                             window.location.href = "product.html?id=".concat(element.id);
                         });
@@ -93,16 +105,25 @@ function loadMensClothes() {
 }
 function loadWomensClothes() {
     return __awaiter(this, void 0, void 0, function () {
-        var raw, product;
+        var catLabels, womenProductDisplay, raw, product;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('https://fakestoreapi.com/products/category/women\'s clothing?limit=4')];
+                case 0:
+                    PRODUCTROPICA.innerHTML = '';
+                    console.log("loading women clothes");
+                    catLabels = document.createElement("div");
+                    womenProductDisplay = document.createElement("div");
+                    catLabels.innerText = "WOMEN";
+                    catLabels.classList.add("catLabels");
+                    womenProductDisplay.classList.add("p-dis");
+                    PRODUCT_DISPLAY.appendChild(catLabels);
+                    PRODUCT_DISPLAY.appendChild(womenProductDisplay);
+                    return [4 /*yield*/, fetch('https://fakestoreapi.com/products/category/women\'s clothing?limit=4')];
                 case 1:
                     raw = _a.sent();
                     return [4 /*yield*/, raw.json()];
                 case 2:
                     product = _a.sent();
-                    console.log(product);
                     product.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
@@ -129,7 +150,7 @@ function loadWomensClothes() {
                         productTextDiv.appendChild(title);
                         title.appendChild(titleText);
                         productCards.appendChild(productTextDiv);
-                        WOMEN_PRODUCT_DISPLAY.appendChild(productCards);
+                        womenProductDisplay.appendChild(productCards);
                         productCards.addEventListener("click", function () {
                             window.location.href = "product.html?id=".concat(element.id);
                         });
@@ -139,5 +160,73 @@ function loadWomensClothes() {
         });
     });
 }
+function loadAll() {
+    return __awaiter(this, void 0, void 0, function () {
+        var raw, product, FILTER_PRODUCTS;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    PRODUCT_DISPLAY.innerHTML = '';
+                    return [4 /*yield*/, fetch('https://fakestoreapi.com/products')];
+                case 1:
+                    raw = _a.sent();
+                    return [4 /*yield*/, raw.json()];
+                case 2:
+                    product = _a.sent();
+                    FILTER_PRODUCTS = [];
+                    FILTER_PRODUCTS = product.filter(function (product) {
+                        return product.title.toLowerCase().includes(SEARCH_BAR.value);
+                    });
+                    console.log(SEARCH_BAR.value);
+                    PRODUCTROPICA.innerHTML = '';
+                    FILTER_PRODUCTS.forEach(function (element) {
+                        var productCards = document.createElement("div");
+                        var imageHolder = document.createElement("div");
+                        var img = document.createElement("img");
+                        var title = document.createElement("h1");
+                        var productTextDiv = document.createElement("div");
+                        var quickViewDiv = document.createElement("div");
+                        var qDivButton = document.createElement("button");
+                        var qDivButtonText = document.createTextNode("QUICK VIEW");
+                        var titleText = document.createTextNode(element.title);
+                        productTextDiv.classList.add("productTextDiv");
+                        productCards.classList.add("products-cards");
+                        imageHolder.classList.add("imageHolder");
+                        title.classList.add("title-item");
+                        quickViewDiv.classList.add("q-v-div");
+                        qDivButton.classList.add("q-div-btn");
+                        img.setAttribute("src", element.image);
+                        img.classList.add("p-img");
+                        imageHolder.appendChild(img);
+                        imageHolder.appendChild(quickViewDiv);
+                        quickViewDiv.appendChild(qDivButton);
+                        qDivButton.appendChild(qDivButtonText);
+                        productCards.appendChild(imageHolder);
+                        productTextDiv.appendChild(title);
+                        title.appendChild(titleText);
+                        productCards.appendChild(productTextDiv);
+                        PRODUCTROPICA.appendChild(productCards);
+                        productCards.addEventListener("click", function () {
+                            window.location.href = "product.html?id=".concat(element.id);
+                        });
+                    });
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+SEARCH_BAR.addEventListener("input", function () {
+    console.log("clicks");
+    if (SEARCH_BAR.value) {
+        loadAll();
+        console.log("cond1");
+    }
+    else {
+        PRODUCTROPICA.innerHTML = '   ';
+        console.log("cond2");
+        loadMensClothes();
+        loadWomensClothes();
+    }
+});
 loadMensClothes();
 loadWomensClothes();
