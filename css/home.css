@@ -112,10 +112,27 @@ nav .logo h1 a{
   .imageHolder{
     margin: 0vw 5vw;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 25vw;
     overflow-y: hidden;
+  }
+
+  .q-v-div{
+    display: none;
+  }
+
+  .q-div-btn{
+    position: absolute;
+    width: 15vw;
+    background-color: #fff;
+    padding: 1vw 0;
+    border: 2px solid rgba(110,120,120,0.2);
+    border-radius: 15px;
+    font-size: 1vw;
+    color: rgba(100,100,100,0.7);
+    box-shadow: 17px 0px 23px -14px rgba(0,0,0,0.1),-17px 0px 23px -12px rgba(0,0,0,0.1);
   }
 
   .products-cards{
@@ -135,6 +152,12 @@ nav .logo h1 a{
     box-shadow: 17px 0px 23px -14px rgba(0,0,0,0.1),-17px 0px 23px -12px rgba(0,0,0,0.1);
     cursor: pointer;
     transform: scale(1.05);
+  }
+
+  .products-cards:hover .q-v-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .title-item{

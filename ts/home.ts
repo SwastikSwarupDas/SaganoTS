@@ -25,17 +25,25 @@ async function loadMensClothes(): Promise<void> {
         let img             : HTMLImageElement      = document.createElement("img");
         let title           : HTMLHeadingElement    = document.createElement("h1");
         let productTextDiv  : HTMLDivElement        = document.createElement("div");
+        let quickViewDiv    : HTMLDivElement        = document.createElement("div");
+        let qDivButton      : HTMLButtonElement     = document.createElement("button");
+        let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
         let titleText       : Text                  = document.createTextNode(element.title);
 
         productTextDiv.classList.add("productTextDiv");
         productCards.classList.add("products-cards");
         imageHolder.classList.add("imageHolder");
         title.classList.add("title-item");
+        quickViewDiv.classList.add("q-v-div");
+        qDivButton.classList.add("q-div-btn");
 
         img.setAttribute("src",element.image);
         img.classList.add("p-img");
 
         imageHolder.appendChild(img);
+        imageHolder.appendChild(quickViewDiv);
+        quickViewDiv.appendChild(qDivButton);
+        qDivButton.appendChild(qDivButtonText);
         productCards.appendChild(imageHolder);
         productTextDiv.appendChild(title);
         title.appendChild(titleText);
@@ -59,22 +67,30 @@ async function loadWomensClothes(): Promise<void> {
     
     product.forEach((element: any) => {
     
-        let productCards      : HTMLDivElement        = document.createElement("div");
+        let productCards    : HTMLDivElement        = document.createElement("div");
         let imageHolder     : HTMLDivElement        = document.createElement("div");
         let img             : HTMLImageElement      = document.createElement("img");
         let title           : HTMLHeadingElement    = document.createElement("h1");
         let productTextDiv  : HTMLDivElement        = document.createElement("div");
+        let quickViewDiv    : HTMLDivElement        = document.createElement("div");
+        let qDivButton      : HTMLButtonElement     = document.createElement("button");
+        let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
         let titleText       : Text                  = document.createTextNode(element.title);
-
+        
         productTextDiv.classList.add("productTextDiv");
         productCards.classList.add("products-cards");
         imageHolder.classList.add("imageHolder");
         title.classList.add("title-item");
+        quickViewDiv.classList.add("q-v-div");
+        qDivButton.classList.add("q-div-btn");
 
         img.setAttribute("src",element.image);
         img.classList.add("p-img");
 
         imageHolder.appendChild(img);
+        imageHolder.appendChild(quickViewDiv);
+        quickViewDiv.appendChild(qDivButton);
+        qDivButton.appendChild(qDivButtonText);
         productCards.appendChild(imageHolder);
         productTextDiv.appendChild(title);
         title.appendChild(titleText);
