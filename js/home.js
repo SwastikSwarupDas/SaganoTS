@@ -50,18 +50,25 @@ if (localStorage.getItem('cart') === null) {
 }
 function loadMensClothes() {
     return __awaiter(this, void 0, void 0, function () {
-        var catLabels, menProductDisplay, raw, product;
+        var catLabels, catRow, sortBTN, menProductDisplay, raw, product;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     PRODUCTROPICA.innerHTML = '';
                     console.log("loading men clothes");
                     catLabels = document.createElement("div");
+                    catRow = document.createElement("div");
+                    sortBTN = document.createElement("button");
                     menProductDisplay = document.createElement("div");
                     catLabels.innerText = "MEN";
                     catLabels.classList.add("catLabels");
                     menProductDisplay.classList.add("p-dis");
-                    PRODUCT_DISPLAY.appendChild(catLabels);
+                    catRow.classList.add("catRow");
+                    sortBTN.classList.add("sort-btn");
+                    sortBTN.innerHTML = "SORT PRICE <i class=\"ri-arrow-up-down-line\"></i>";
+                    catRow.appendChild(catLabels);
+                    catRow.appendChild(sortBTN);
+                    PRODUCT_DISPLAY.appendChild(catRow);
                     PRODUCT_DISPLAY.appendChild(menProductDisplay);
                     return [4 /*yield*/, fetch('https://fakestoreapi.com/products/category/men\'s clothing')];
                 case 1:
@@ -69,6 +76,9 @@ function loadMensClothes() {
                     return [4 /*yield*/, raw.json()];
                 case 2:
                     product = _a.sent();
+                    sortBTN.addEventListener("click", function () {
+                        console.log("sort clicked");
+                    });
                     product.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
@@ -107,18 +117,25 @@ function loadMensClothes() {
 }
 function loadWomensClothes() {
     return __awaiter(this, void 0, void 0, function () {
-        var catLabels, womenProductDisplay, raw, product;
+        var catLabels, catRow, sortBTN, womenProductDisplay, raw, product;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     PRODUCTROPICA.innerHTML = '';
                     console.log("loading women clothes");
                     catLabels = document.createElement("div");
+                    catRow = document.createElement("div");
+                    sortBTN = document.createElement("button");
                     womenProductDisplay = document.createElement("div");
                     catLabels.innerText = "WOMEN";
                     catLabels.classList.add("catLabels");
                     womenProductDisplay.classList.add("p-dis");
-                    PRODUCT_DISPLAY.appendChild(catLabels);
+                    catRow.classList.add("catRow");
+                    sortBTN.classList.add("sort-btn");
+                    sortBTN.innerHTML = "SORT PRICE <i class=\"ri-arrow-up-down-line\"></i>";
+                    catRow.appendChild(catLabels);
+                    catRow.appendChild(sortBTN);
+                    PRODUCT_DISPLAY.appendChild(catRow);
                     PRODUCT_DISPLAY.appendChild(womenProductDisplay);
                     return [4 /*yield*/, fetch('https://fakestoreapi.com/products/category/women\'s clothing?limit=4')];
                 case 1:
@@ -126,6 +143,11 @@ function loadWomensClothes() {
                     return [4 /*yield*/, raw.json()];
                 case 2:
                     product = _a.sent();
+                    sortBTN.addEventListener("click", function () {
+                        console.log("sort clicked");
+                        // product.sort(((a, b) => b.price - a.price));
+                    });
+                    console.log(product);
                     product.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
@@ -164,13 +186,20 @@ function loadWomensClothes() {
 }
 function loadAll() {
     return __awaiter(this, void 0, void 0, function () {
-        var catLabels, raw, product, FILTER_PRODUCTS;
+        var catLabels, catRow, sortBTN, raw, product, FILTER_PRODUCTS;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     catLabels = document.createElement("div");
+                    catRow = document.createElement("div");
+                    sortBTN = document.createElement("button");
                     catLabels.innerHTML = "SEARCH RESULTS FOR ".concat(SEARCH_BAR.value, " <i class=\"ri-arrow-right-double-fill\">");
                     catLabels.classList.add("catLabels");
+                    catRow.classList.add("catRow");
+                    sortBTN.classList.add("sort-btn");
+                    sortBTN.innerHTML = "SORT PRICE <i class=\"ri-arrow-up-down-line\"></i>";
+                    // <i class="ri-sort-asc"></i>
+                    // <i class="ri-sort-desc"></i>
                     PRODUCT_DISPLAY.innerHTML = '';
                     return [4 /*yield*/, fetch('https://fakestoreapi.com/products')];
                 case 1:
@@ -184,7 +213,9 @@ function loadAll() {
                     });
                     PRODUCTROPICA.innerHTML = '';
                     PRODUCTASIA.innerHTML = '';
-                    PRODUCTROPICA.appendChild(catLabels);
+                    catRow.appendChild(catLabels);
+                    catRow.appendChild(sortBTN);
+                    PRODUCTROPICA.appendChild(catRow);
                     FILTER_PRODUCTS.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");

@@ -23,18 +23,31 @@ async function loadMensClothes(): Promise<void> {
     console.log("loading men clothes");
 
     let catLabels : HTMLDivElement = document.createElement("div");
+    let catRow      : HTMLDivElement    = document.createElement("div");
+    let sortBTN     : HTMLButtonElement = document.createElement("button");
     let menProductDisplay : HTMLDivElement = document.createElement("div");
     catLabels.innerText="MEN";
 
     catLabels.classList.add("catLabels");
     menProductDisplay.classList.add("p-dis");
 
-    PRODUCT_DISPLAY.appendChild(catLabels);
+    catRow.classList.add("catRow");
+    sortBTN.classList.add("sort-btn");
+    sortBTN.innerHTML=`SORT PRICE <i class="ri-arrow-up-down-line"></i>`;
+
+
+
+    catRow.appendChild(catLabels);
+    catRow.appendChild(sortBTN);
+    PRODUCT_DISPLAY.appendChild(catRow);
     PRODUCT_DISPLAY.appendChild(menProductDisplay);
     
     let raw     :   any = await fetch('https://fakestoreapi.com/products/category/men\'s clothing');
     let product :   any = await raw.json();
     
+    sortBTN.addEventListener("click",()=>{
+        console.log("sort clicked");
+    })
     
     product.forEach((element: any) => {
     
@@ -81,19 +94,35 @@ async function loadWomensClothes(): Promise<void> {
     console.log("loading women clothes")
 
     let catLabels : HTMLDivElement = document.createElement("div");
+    let catRow      : HTMLDivElement    = document.createElement("div");
+    let sortBTN     : HTMLButtonElement = document.createElement("button");
     let womenProductDisplay : HTMLDivElement = document.createElement("div");
     catLabels.innerText="WOMEN";
     
     catLabels.classList.add("catLabels");
     womenProductDisplay.classList.add("p-dis")
 
-    PRODUCT_DISPLAY.appendChild(catLabels);
+    catRow.classList.add("catRow");
+    sortBTN.classList.add("sort-btn");
+    sortBTN.innerHTML=`SORT PRICE <i class="ri-arrow-up-down-line"></i>`;
+
+    catRow.appendChild(catLabels);
+    catRow.appendChild(sortBTN);
+    PRODUCT_DISPLAY.appendChild(catRow);
     PRODUCT_DISPLAY.appendChild(womenProductDisplay);
     
     let raw     :   any = await fetch('https://fakestoreapi.com/products/category/women\'s clothing?limit=4');
     let product :   any = await raw.json();
+
+
+
+    sortBTN.addEventListener("click",()=>{
+        console.log("sort clicked");
+        // product.sort(((a, b) => b.price - a.price));
+    });
     
-    
+    console.log(product);
+
     product.forEach((element: any) => {
     
         let productCards    : HTMLDivElement        = document.createElement("div");
@@ -132,15 +161,23 @@ async function loadWomensClothes(): Promise<void> {
         });
 
     });
- }
+}
 
- async function loadAll(): Promise<void> {
+async function loadAll(): Promise<void> {
 
-    let catLabels : HTMLDivElement = document.createElement("div");
+    let catLabels   : HTMLDivElement    = document.createElement("div");
+    let catRow      : HTMLDivElement    = document.createElement("div");
+    let sortBTN     : HTMLButtonElement = document.createElement("button");
+
     catLabels.innerHTML=`SEARCH RESULTS FOR ${SEARCH_BAR.value} <i class="ri-arrow-right-double-fill">`;
 
     catLabels.classList.add("catLabels");
+    catRow.classList.add("catRow");
+    sortBTN.classList.add("sort-btn");
+    sortBTN.innerHTML=`SORT PRICE <i class="ri-arrow-up-down-line"></i>`;
 
+    // <i class="ri-sort-asc"></i>
+    // <i class="ri-sort-desc"></i>
 
     PRODUCT_DISPLAY.innerHTML='';
 
@@ -155,7 +192,10 @@ async function loadWomensClothes(): Promise<void> {
     PRODUCTROPICA.innerHTML='';
     PRODUCTASIA.innerHTML='';
     
-    PRODUCTROPICA.appendChild(catLabels);
+    catRow.appendChild(catLabels);
+    catRow.appendChild(sortBTN);
+    PRODUCTROPICA.appendChild(catRow);
+
     FILTER_PRODUCTS.forEach((element: any) => {
     
         let productCards    : HTMLDivElement        = document.createElement("div");

@@ -139,7 +139,7 @@ form ::placeholder{
 
   .catLabels{
     font-size: 1.2vw;
-    margin: 2vw 0vw 1vw 3vw;
+    margin: 0;
     font-weight: 200;
     color: rgba(0,0,0,0.5);
   }
@@ -155,7 +155,6 @@ form ::placeholder{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 25vw;
     overflow-y: hidden;
   }
 
@@ -186,6 +185,23 @@ form ::placeholder{
     border-radius: 2rem;
     transform: scale(1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .catRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2vw 4vw;
+  }
+
+  .sort-btn{
+    letter-spacing: 0.05vw;
+    border: 0;
+    background-color: #ebebeb;
+    padding: 0.4vw 1vw;
+    border-radius: 15px;
+    font-size: 1vw;
+    color: rgba(100,100,100,0.7);
   }
 
   .products-cards:hover{
