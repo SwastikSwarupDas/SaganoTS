@@ -122,14 +122,26 @@ form ::placeholder{
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-evenly;
-    margin-bottom: 3vw;
+    margin-bottom: 4vw;
     overflow-y: hidden;
+  }
+
+  .productropica{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .productasia{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 
   .catLabels{
     font-size: 1.2vw;
     margin: 2vw 0vw 1vw 3vw;
-    font-weight: 800;
+    font-weight: 200;
+    color: rgba(0,0,0,0.5);
   }
 
 

@@ -40,6 +40,8 @@ var PRODUCT_DISPLAY = document.querySelector('.productDisplay');
 var SEARCH_SELECT = document.createElement("div");
 var SEARCH_BAR = document.querySelector("form input");
 var PRODUCTROPICA = document.querySelector('.productropica');
+var PRODUCTASIA = document.createElement("div");
+PRODUCTASIA.classList.add("productasia");
 // const WOMEN_PRODUCT_DISPLAY = document.querySelector('.womenProductDisplay') as HTMLBodyElement;
 console.log(PRODUCT_DISPLAY.innerText);
 // Checking if there exists a Cart object, and if not, creating it.
@@ -162,10 +164,13 @@ function loadWomensClothes() {
 }
 function loadAll() {
     return __awaiter(this, void 0, void 0, function () {
-        var raw, product, FILTER_PRODUCTS;
+        var catLabels, raw, product, FILTER_PRODUCTS;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    catLabels = document.createElement("div");
+                    catLabels.innerHTML = "SEARCH RESULTS FOR ".concat(SEARCH_BAR.value, " <i class=\"ri-arrow-right-double-fill\">");
+                    catLabels.classList.add("catLabels");
                     PRODUCT_DISPLAY.innerHTML = '';
                     return [4 /*yield*/, fetch('https://fakestoreapi.com/products')];
                 case 1:
@@ -177,8 +182,9 @@ function loadAll() {
                     FILTER_PRODUCTS = product.filter(function (product) {
                         return product.title.toLowerCase().includes(SEARCH_BAR.value);
                     });
-                    console.log(SEARCH_BAR.value);
                     PRODUCTROPICA.innerHTML = '';
+                    PRODUCTASIA.innerHTML = '';
+                    PRODUCTROPICA.appendChild(catLabels);
                     FILTER_PRODUCTS.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
@@ -205,10 +211,11 @@ function loadAll() {
                         productTextDiv.appendChild(title);
                         title.appendChild(titleText);
                         productCards.appendChild(productTextDiv);
-                        PRODUCTROPICA.appendChild(productCards);
+                        PRODUCTASIA.appendChild(productCards);
                         productCards.addEventListener("click", function () {
                             window.location.href = "product.html?id=".concat(element.id);
                         });
+                        PRODUCTROPICA.appendChild(PRODUCTASIA);
                     });
                     return [2 /*return*/];
             }
@@ -222,7 +229,7 @@ SEARCH_BAR.addEventListener("input", function () {
         console.log("cond1");
     }
     else {
-        PRODUCTROPICA.innerHTML = '   ';
+        PRODUCTROPICA.innerHTML = '';
         console.log("cond2");
         loadMensClothes();
         loadWomensClothes();

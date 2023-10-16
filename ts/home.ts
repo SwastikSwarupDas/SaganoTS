@@ -4,6 +4,9 @@ const PRODUCT_DISPLAY                   = document.querySelector('.productDispla
 const SEARCH_SELECT : HTMLDivElement    = document.createElement("div");
 const SEARCH_BAR                        = document.querySelector("form input") as HTMLInputElement;
 const PRODUCTROPICA                     = document.querySelector('.productropica') as HTMLBodyElement;
+const PRODUCTASIA   : HTMLDivElement    = document.createElement("div");
+
+PRODUCTASIA.classList.add("productasia");
 
 // const WOMEN_PRODUCT_DISPLAY = document.querySelector('.womenProductDisplay') as HTMLBodyElement;
 
@@ -133,6 +136,12 @@ async function loadWomensClothes(): Promise<void> {
 
  async function loadAll(): Promise<void> {
 
+    let catLabels : HTMLDivElement = document.createElement("div");
+    catLabels.innerHTML=`SEARCH RESULTS FOR ${SEARCH_BAR.value} <i class="ri-arrow-right-double-fill">`;
+
+    catLabels.classList.add("catLabels");
+
+
     PRODUCT_DISPLAY.innerHTML='';
 
     let raw     :   any = await fetch('https://fakestoreapi.com/products');
@@ -142,11 +151,11 @@ async function loadWomensClothes(): Promise<void> {
         
     FILTER_PRODUCTS = product.filter((product:any) => 
             product.title.toLowerCase().includes(SEARCH_BAR.value));
-            console.log(SEARCH_BAR.value);
-            
-    PRODUCTROPICA.innerHTML='';
 
+    PRODUCTROPICA.innerHTML='';
+    PRODUCTASIA.innerHTML='';
     
+    PRODUCTROPICA.appendChild(catLabels);
     FILTER_PRODUCTS.forEach((element: any) => {
     
         let productCards    : HTMLDivElement        = document.createElement("div");
@@ -178,11 +187,13 @@ async function loadWomensClothes(): Promise<void> {
         title.appendChild(titleText);
         productCards.appendChild(productTextDiv);
 
-        PRODUCTROPICA.appendChild(productCards);
+        PRODUCTASIA.appendChild(productCards);
 
         productCards.addEventListener("click", () => {
             window.location.href = `product.html?id=${element.id}`;
         });
+
+        PRODUCTROPICA.appendChild(PRODUCTASIA);
 
     });
  }
@@ -197,7 +208,7 @@ SEARCH_BAR.addEventListener("input",()=>{
         console.log("cond1");
     }
     else{
-        PRODUCTROPICA.innerHTML='   ';
+        PRODUCTROPICA.innerHTML='';
         console.log("cond2");
         loadMensClothes();
         loadWomensClothes();
