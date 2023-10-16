@@ -50,7 +50,7 @@ if (localStorage.getItem('cart') === null) {
 }
 function loadMensClothes() {
     return __awaiter(this, void 0, void 0, function () {
-        var catLabels, catRow, sortBTN, menProductDisplay, raw, product;
+        var catLabels, catRow, sortBTN, menProductDisplay, raw, product, sortOrder;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -76,8 +76,55 @@ function loadMensClothes() {
                     return [4 /*yield*/, raw.json()];
                 case 2:
                     product = _a.sent();
+                    sortOrder = 'asc';
                     sortBTN.addEventListener("click", function () {
                         console.log("sort clicked");
+                        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+                        sortBTN.innerHTML = " PRICE ".concat(sortOrder === 'asc' ? '<i class="ri-sort-asc"></i>' : '<i class="ri-sort-desc"></i>');
+                        product.sort(function (a, b) {
+                            if (sortOrder === 'asc') {
+                                return a.price - b.price;
+                            }
+                            else {
+                                return b.price - a.price;
+                            }
+                        });
+                        menProductDisplay.innerHTML = '';
+                        product.forEach(function (element) {
+                            var productCards = document.createElement("div");
+                            var imageHolder = document.createElement("div");
+                            var img = document.createElement("img");
+                            var title = document.createElement("h1");
+                            var price = document.createElement("h1");
+                            var productTextDiv = document.createElement("div");
+                            var quickViewDiv = document.createElement("div");
+                            var qDivButton = document.createElement("button");
+                            var qDivButtonText = document.createTextNode("QUICK VIEW");
+                            var titleText = document.createTextNode(element.title);
+                            var priceText = document.createTextNode(element.price);
+                            productTextDiv.classList.add("productTextDiv");
+                            productCards.classList.add("products-cards");
+                            imageHolder.classList.add("imageHolder");
+                            title.classList.add("title-item");
+                            quickViewDiv.classList.add("q-v-div");
+                            qDivButton.classList.add("q-div-btn");
+                            img.setAttribute("src", element.image);
+                            img.classList.add("p-img");
+                            // price.appendChild(priceText);
+                            imageHolder.appendChild(img);
+                            imageHolder.appendChild(quickViewDiv);
+                            quickViewDiv.appendChild(qDivButton);
+                            qDivButton.appendChild(qDivButtonText);
+                            productCards.appendChild(imageHolder);
+                            productTextDiv.appendChild(title);
+                            title.appendChild(titleText);
+                            productCards.appendChild(productTextDiv);
+                            // productCards.appendChild(price);
+                            menProductDisplay.appendChild(productCards);
+                            productCards.addEventListener("click", function () {
+                                window.location.href = "product.html?id=".concat(element.id);
+                            });
+                        });
                     });
                     product.forEach(function (element) {
                         var productCards = document.createElement("div");
@@ -117,7 +164,7 @@ function loadMensClothes() {
 }
 function loadWomensClothes() {
     return __awaiter(this, void 0, void 0, function () {
-        var catLabels, catRow, sortBTN, womenProductDisplay, raw, product;
+        var catLabels, catRow, sortBTN, womenProductDisplay, raw, product, sortOrder;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -143,11 +190,56 @@ function loadWomensClothes() {
                     return [4 /*yield*/, raw.json()];
                 case 2:
                     product = _a.sent();
+                    sortOrder = 'asc';
                     sortBTN.addEventListener("click", function () {
                         console.log("sort clicked");
-                        // product.sort(((a, b) => b.price - a.price));
+                        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+                        sortBTN.innerHTML = " PRICE ".concat(sortOrder === 'asc' ? '<i class="ri-sort-asc"></i>' : '<i class="ri-sort-desc"></i>');
+                        product.sort(function (a, b) {
+                            if (sortOrder === 'asc') {
+                                return a.price - b.price;
+                            }
+                            else {
+                                return b.price - a.price;
+                            }
+                        });
+                        womenProductDisplay.innerHTML = '';
+                        product.forEach(function (element) {
+                            var productCards = document.createElement("div");
+                            var imageHolder = document.createElement("div");
+                            var img = document.createElement("img");
+                            var title = document.createElement("h1");
+                            var price = document.createElement("h1");
+                            var productTextDiv = document.createElement("div");
+                            var quickViewDiv = document.createElement("div");
+                            var qDivButton = document.createElement("button");
+                            var qDivButtonText = document.createTextNode("QUICK VIEW");
+                            var titleText = document.createTextNode(element.title);
+                            var priceText = document.createTextNode(element.price);
+                            productTextDiv.classList.add("productTextDiv");
+                            productCards.classList.add("products-cards");
+                            imageHolder.classList.add("imageHolder");
+                            title.classList.add("title-item");
+                            quickViewDiv.classList.add("q-v-div");
+                            qDivButton.classList.add("q-div-btn");
+                            img.setAttribute("src", element.image);
+                            img.classList.add("p-img");
+                            // price.appendChild(priceText);
+                            imageHolder.appendChild(img);
+                            imageHolder.appendChild(quickViewDiv);
+                            quickViewDiv.appendChild(qDivButton);
+                            qDivButton.appendChild(qDivButtonText);
+                            productCards.appendChild(imageHolder);
+                            productTextDiv.appendChild(title);
+                            title.appendChild(titleText);
+                            productCards.appendChild(productTextDiv);
+                            // productCards.appendChild(price);
+                            womenProductDisplay.appendChild(productCards);
+                            productCards.addEventListener("click", function () {
+                                window.location.href = "product.html?id=".concat(element.id);
+                            });
+                        });
                     });
-                    console.log(product);
                     product.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
@@ -186,7 +278,7 @@ function loadWomensClothes() {
 }
 function loadAll() {
     return __awaiter(this, void 0, void 0, function () {
-        var catLabels, catRow, sortBTN, raw, product, FILTER_PRODUCTS;
+        var catLabels, catRow, sortBTN, raw, product, FILTER_PRODUCTS, sortOrder;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -198,8 +290,6 @@ function loadAll() {
                     catRow.classList.add("catRow");
                     sortBTN.classList.add("sort-btn");
                     sortBTN.innerHTML = "SORT PRICE <i class=\"ri-arrow-up-down-line\"></i>";
-                    // <i class="ri-sort-asc"></i>
-                    // <i class="ri-sort-desc"></i>
                     PRODUCT_DISPLAY.innerHTML = '';
                     return [4 /*yield*/, fetch('https://fakestoreapi.com/products')];
                 case 1:
@@ -216,6 +306,57 @@ function loadAll() {
                     catRow.appendChild(catLabels);
                     catRow.appendChild(sortBTN);
                     PRODUCTROPICA.appendChild(catRow);
+                    sortOrder = 'asc';
+                    sortBTN.addEventListener("click", function () {
+                        console.log("sort clicked");
+                        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+                        sortBTN.innerHTML = " PRICE ".concat(sortOrder === 'asc' ? '<i class="ri-sort-asc"></i>' : '<i class="ri-sort-desc"></i>');
+                        product.sort(function (a, b) {
+                            if (sortOrder === 'asc') {
+                                return a.price - b.price;
+                            }
+                            else {
+                                return b.price - a.price;
+                            }
+                        });
+                        PRODUCTASIA.innerHTML = '';
+                        product.forEach(function (element) {
+                            var productCards = document.createElement("div");
+                            var imageHolder = document.createElement("div");
+                            var img = document.createElement("img");
+                            var title = document.createElement("h1");
+                            var price = document.createElement("h1");
+                            var productTextDiv = document.createElement("div");
+                            var quickViewDiv = document.createElement("div");
+                            var qDivButton = document.createElement("button");
+                            var qDivButtonText = document.createTextNode("QUICK VIEW");
+                            var titleText = document.createTextNode(element.title);
+                            var priceText = document.createTextNode(element.price);
+                            productTextDiv.classList.add("productTextDiv");
+                            productCards.classList.add("products-cards");
+                            imageHolder.classList.add("imageHolder");
+                            title.classList.add("title-item");
+                            quickViewDiv.classList.add("q-v-div");
+                            qDivButton.classList.add("q-div-btn");
+                            img.setAttribute("src", element.image);
+                            img.classList.add("p-img");
+                            // price.appendChild(priceText);
+                            imageHolder.appendChild(img);
+                            imageHolder.appendChild(quickViewDiv);
+                            quickViewDiv.appendChild(qDivButton);
+                            qDivButton.appendChild(qDivButtonText);
+                            productCards.appendChild(imageHolder);
+                            productTextDiv.appendChild(title);
+                            title.appendChild(titleText);
+                            productCards.appendChild(productTextDiv);
+                            // productCards.appendChild(price);
+                            PRODUCTASIA.appendChild(productCards);
+                            productCards.addEventListener("click", function () {
+                                window.location.href = "product.html?id=".concat(element.id);
+                            });
+                            PRODUCTROPICA.appendChild(PRODUCTASIA);
+                        });
+                    });
                     FILTER_PRODUCTS.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");

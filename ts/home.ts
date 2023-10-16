@@ -35,8 +35,6 @@ async function loadMensClothes(): Promise<void> {
     sortBTN.classList.add("sort-btn");
     sortBTN.innerHTML=`SORT PRICE <i class="ri-arrow-up-down-line"></i>`;
 
-
-
     catRow.appendChild(catLabels);
     catRow.appendChild(sortBTN);
     PRODUCT_DISPLAY.appendChild(catRow);
@@ -45,9 +43,70 @@ async function loadMensClothes(): Promise<void> {
     let raw     :   any = await fetch('https://fakestoreapi.com/products/category/men\'s clothing');
     let product :   any = await raw.json();
     
-    sortBTN.addEventListener("click",()=>{
+    let sortOrder = 'asc';
+    
+    sortBTN.addEventListener("click", () => {
         console.log("sort clicked");
-    })
+        
+        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+        
+        sortBTN.innerHTML = ` PRICE ${sortOrder === 'asc' ? '<i class="ri-sort-asc"></i>' : '<i class="ri-sort-desc"></i>'}`;
+
+        product.sort((a: { price: number }, b: { price: number }) => {
+            if (sortOrder === 'asc') {
+                return a.price - b.price;
+            } else {
+                return b.price - a.price;
+            }
+        });
+    
+        menProductDisplay.innerHTML = '';
+        product.forEach((element: any) => {
+
+            let productCards    : HTMLDivElement        = document.createElement("div");
+            let imageHolder     : HTMLDivElement        = document.createElement("div");
+            let img             : HTMLImageElement      = document.createElement("img");
+            let title           : HTMLHeadingElement    = document.createElement("h1");
+            let price           : HTMLHeadElement       = document.createElement("h1");
+            let productTextDiv  : HTMLDivElement        = document.createElement("div");
+            let quickViewDiv    : HTMLDivElement        = document.createElement("div");
+            let qDivButton      : HTMLButtonElement     = document.createElement("button");
+            let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
+            let titleText       : Text                  = document.createTextNode(element.title);
+            let priceText       : Text                  = document.createTextNode(element.price);
+
+
+            productTextDiv.classList.add("productTextDiv");
+            productCards.classList.add("products-cards");
+            imageHolder.classList.add("imageHolder");
+            title.classList.add("title-item");
+            quickViewDiv.classList.add("q-v-div");
+            qDivButton.classList.add("q-div-btn");
+
+            img.setAttribute("src",element.image);
+            img.classList.add("p-img");
+
+            // price.appendChild(priceText);
+            imageHolder.appendChild(img);
+            imageHolder.appendChild(quickViewDiv);
+            quickViewDiv.appendChild(qDivButton);
+            qDivButton.appendChild(qDivButtonText);
+            productCards.appendChild(imageHolder);
+            productTextDiv.appendChild(title);
+            title.appendChild(titleText);
+            productCards.appendChild(productTextDiv);
+            // productCards.appendChild(price);
+
+            menProductDisplay.appendChild(productCards);
+
+            productCards.addEventListener("click", () => {
+                window.location.href = `product.html?id=${element.id}`;
+            });
+
+        });
+    });
+
+       
     
     product.forEach((element: any) => {
     
@@ -114,14 +173,69 @@ async function loadWomensClothes(): Promise<void> {
     let raw     :   any = await fetch('https://fakestoreapi.com/products/category/women\'s clothing?limit=4');
     let product :   any = await raw.json();
 
-
-
-    sortBTN.addEventListener("click",()=>{
+    let sortOrder = 'asc';
+    
+    sortBTN.addEventListener("click", () => {
         console.log("sort clicked");
-        // product.sort(((a, b) => b.price - a.price));
+        
+        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+
+        sortBTN.innerHTML = ` PRICE ${sortOrder === 'asc' ? '<i class="ri-sort-asc"></i>' : '<i class="ri-sort-desc"></i>'}`;
+    
+        product.sort((a: { price: number }, b: { price: number }) => {
+            if (sortOrder === 'asc') {
+                return a.price - b.price;
+            } else {
+                return b.price - a.price;
+            }
+        });
+    
+        womenProductDisplay.innerHTML = '';
+        product.forEach((element: any) => {
+
+            let productCards    : HTMLDivElement        = document.createElement("div");
+            let imageHolder     : HTMLDivElement        = document.createElement("div");
+            let img             : HTMLImageElement      = document.createElement("img");
+            let title           : HTMLHeadingElement    = document.createElement("h1");
+            let price           : HTMLHeadElement       = document.createElement("h1");
+            let productTextDiv  : HTMLDivElement        = document.createElement("div");
+            let quickViewDiv    : HTMLDivElement        = document.createElement("div");
+            let qDivButton      : HTMLButtonElement     = document.createElement("button");
+            let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
+            let titleText       : Text                  = document.createTextNode(element.title);
+            let priceText       : Text                  = document.createTextNode(element.price);
+
+
+            productTextDiv.classList.add("productTextDiv");
+            productCards.classList.add("products-cards");
+            imageHolder.classList.add("imageHolder");
+            title.classList.add("title-item");
+            quickViewDiv.classList.add("q-v-div");
+            qDivButton.classList.add("q-div-btn");
+
+            img.setAttribute("src",element.image);
+            img.classList.add("p-img");
+
+            // price.appendChild(priceText);
+            imageHolder.appendChild(img);
+            imageHolder.appendChild(quickViewDiv);
+            quickViewDiv.appendChild(qDivButton);
+            qDivButton.appendChild(qDivButtonText);
+            productCards.appendChild(imageHolder);
+            productTextDiv.appendChild(title);
+            title.appendChild(titleText);
+            productCards.appendChild(productTextDiv);
+            // productCards.appendChild(price);
+
+            womenProductDisplay.appendChild(productCards);
+
+            productCards.addEventListener("click", () => {
+                window.location.href = `product.html?id=${element.id}`;
+            });
+
+        });
     });
     
-    console.log(product);
 
     product.forEach((element: any) => {
     
@@ -176,9 +290,6 @@ async function loadAll(): Promise<void> {
     sortBTN.classList.add("sort-btn");
     sortBTN.innerHTML=`SORT PRICE <i class="ri-arrow-up-down-line"></i>`;
 
-    // <i class="ri-sort-asc"></i>
-    // <i class="ri-sort-desc"></i>
-
     PRODUCT_DISPLAY.innerHTML='';
 
     let raw     :   any = await fetch('https://fakestoreapi.com/products');
@@ -195,6 +306,72 @@ async function loadAll(): Promise<void> {
     catRow.appendChild(catLabels);
     catRow.appendChild(sortBTN);
     PRODUCTROPICA.appendChild(catRow);
+
+    let sortOrder = 'asc';
+    
+    sortBTN.addEventListener("click", () => {
+        console.log("sort clicked");
+        
+        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+
+        sortBTN.innerHTML = ` PRICE ${sortOrder === 'asc' ? '<i class="ri-sort-asc"></i>' : '<i class="ri-sort-desc"></i>'}`;
+    
+        product.sort((a: { price: number }, b: { price: number }) => {
+            if (sortOrder === 'asc') {
+                return a.price - b.price;
+            } else {
+                return b.price - a.price;
+            }
+        });
+    
+        PRODUCTASIA.innerHTML = '';
+        product.forEach((element: any) => {
+
+            let productCards    : HTMLDivElement        = document.createElement("div");
+            let imageHolder     : HTMLDivElement        = document.createElement("div");
+            let img             : HTMLImageElement      = document.createElement("img");
+            let title           : HTMLHeadingElement    = document.createElement("h1");
+            let price           : HTMLHeadElement       = document.createElement("h1");
+            let productTextDiv  : HTMLDivElement        = document.createElement("div");
+            let quickViewDiv    : HTMLDivElement        = document.createElement("div");
+            let qDivButton      : HTMLButtonElement     = document.createElement("button");
+            let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
+            let titleText       : Text                  = document.createTextNode(element.title);
+            let priceText       : Text                  = document.createTextNode(element.price);
+
+
+            productTextDiv.classList.add("productTextDiv");
+            productCards.classList.add("products-cards");
+            imageHolder.classList.add("imageHolder");
+            title.classList.add("title-item");
+            quickViewDiv.classList.add("q-v-div");
+            qDivButton.classList.add("q-div-btn");
+
+            img.setAttribute("src",element.image);
+            img.classList.add("p-img");
+
+            // price.appendChild(priceText);
+            imageHolder.appendChild(img);
+            imageHolder.appendChild(quickViewDiv);
+            quickViewDiv.appendChild(qDivButton);
+            qDivButton.appendChild(qDivButtonText);
+            productCards.appendChild(imageHolder);
+            productTextDiv.appendChild(title);
+            title.appendChild(titleText);
+            productCards.appendChild(productTextDiv);
+            // productCards.appendChild(price);
+
+            PRODUCTASIA.appendChild(productCards);
+
+            productCards.addEventListener("click", () => {
+                window.location.href = `product.html?id=${element.id}`;
+            });
+
+            PRODUCTROPICA.appendChild(PRODUCTASIA);
+
+        });
+    });
+
 
     FILTER_PRODUCTS.forEach((element: any) => {
     
