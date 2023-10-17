@@ -11,7 +11,6 @@ FADE_RULE.classList.add("fade_rule");
 
 async function loadCart() : Promise<void> {
 
-
     var totalCartSum        : number = 0;
     let totalCartPrice      : HTMLDivElement = document.createElement("div");
     var billCat             : HTMLDivElement    = document.createElement("div");
