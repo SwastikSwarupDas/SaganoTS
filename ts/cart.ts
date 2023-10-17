@@ -5,7 +5,27 @@ const BILL          = document.querySelector(".tab")          as HTMLDivElement;
 const CARTINATION   = document.querySelector(".cartination")  as HTMLDivElement;
 const EMPTY_CART    = document.querySelector(".emptyCart")    as HTMLDivElement;
 
+const FADE_RULE     : HTMLDivElement    = document.createElement("div");
+FADE_RULE.classList.add("fade_rule");
+
+
 async function loadCart() : Promise<void> {
+
+
+    var totalCartSum        : number = 0;
+    let totalCartPrice      : HTMLDivElement = document.createElement("div");
+    var billCat             : HTMLDivElement    = document.createElement("div");
+
+    BILL.appendChild(FADE_RULE);
+    
+    totalCartPrice.classList.add("bill-list");
+    billCat.classList.add("bill-cat");
+
+    BILL.appendChild(billCat);
+    BILL.appendChild(FADE_RULE.cloneNode(true));
+    BILL.appendChild(totalCartPrice);
+    totalCartPrice.innerHTML="BAG VALUE : ¥" + totalCartSum;
+
     for (let i = 0; i < cart2.length; i++) {
         let product : any = cart2[i];
         let raw : any = await fetch(`https://fakestoreapi.com/products/${product.id}`);
@@ -33,7 +53,7 @@ async function loadCart() : Promise<void> {
         let billItemName        : HTMLDivElement    = document.createElement("div");
         let billPrice           : Text              = document.createTextNode("¥ " + productData.price * 1500 + " x" + product.quantity);
         let billItem            : HTMLDivElement    = document.createElement("div");
-
+        
         removeButton.classList.add("rmv-btn");
         buttons.classList.add("btn-s");
         addButton.classList.add("add-btn");
@@ -48,9 +68,9 @@ async function loadCart() : Promise<void> {
         billList.classList.add("bill-list");
         billItemName.classList.add("bill-item-name");
         billItem.classList.add("bill-item");
+       
 
         img.setAttribute("src",productData.image);
-
         removeButton.appendChild(removeButtonText);
         addButton.appendChild(addButtonText);
         minusButton.appendChild(minusButtonText);
@@ -71,9 +91,8 @@ async function loadCart() : Promise<void> {
         billItem.appendChild(billList);
         billItemName.appendChild(billTitleText);
         billList.appendChild(billPrice);
-        
-        BILL.appendChild(billItem);
-        
+        billCat.appendChild(billItem);
+    
         BAGINATION.appendChild(productDiv);
 
         addButton.addEventListener("click",function(){
@@ -81,6 +100,8 @@ async function loadCart() : Promise<void> {
             localStorage.setItem("cart", JSON.stringify(cart2)); 
             quantity.innerText=product.quantity+" in bag";
             billList.innerText="¥ "+product.price*1500 + " x" + product.quantity;
+            totalCartSum += (product.price*1500);
+            totalCartPrice.innerHTML="BAG VALUE : ¥" + totalCartSum;
         });
 
         minusButton.addEventListener("click",function(){
@@ -92,7 +113,9 @@ async function loadCart() : Promise<void> {
             }
             localStorage.setItem("cart", JSON.stringify(cart2));
             billList.innerText="¥ " +product.price*1500 + " x" + product.quantity;
-            quantity.innerText=product.quantity+" in bag";  
+            quantity.innerText=product.quantity+" in bag";
+            totalCartSum -= (product.price*1500);
+            totalCartPrice.innerHTML="BAG VALUE : ¥" + totalCartSum;  
         
         });
         
@@ -104,8 +127,13 @@ async function loadCart() : Promise<void> {
             localStorage.setItem("cart", JSON.stringify(cart2)); 
             location.reload();
         });
-
+        
+        totalCartSum += (product.price*1500) * product.quantity ;
     }
+    
+    totalCartPrice.innerHTML="BAG VALUE : ¥" + totalCartSum;
+    console.log(totalCartSum);
+
 }
 
 if (cart2.length === 0) {

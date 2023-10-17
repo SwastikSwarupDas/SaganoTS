@@ -40,12 +40,24 @@ var BAGINATION = document.querySelector(".bagination");
 var BILL = document.querySelector(".tab");
 var CARTINATION = document.querySelector(".cartination");
 var EMPTY_CART = document.querySelector(".emptyCart");
+var FADE_RULE = document.createElement("div");
+FADE_RULE.classList.add("fade_rule");
 function loadCart() {
     return __awaiter(this, void 0, void 0, function () {
-        var _loop_1, i;
+        var totalCartSum, totalCartPrice, billCat, _loop_1, i;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    totalCartSum = 0;
+                    totalCartPrice = document.createElement("div");
+                    billCat = document.createElement("div");
+                    BILL.appendChild(FADE_RULE);
+                    totalCartPrice.classList.add("bill-list");
+                    billCat.classList.add("bill-cat");
+                    BILL.appendChild(billCat);
+                    BILL.appendChild(FADE_RULE.cloneNode(true));
+                    BILL.appendChild(totalCartPrice);
+                    totalCartPrice.innerHTML = "BAG VALUE : ¥" + totalCartSum;
                     _loop_1 = function (i) {
                         var product, raw, productData, removeButton, removeButtonText, buttons, addButton, addButtonText, minusButton, minusButtonText, productDiv, productDesc, imageHolder, img, productTitle, titleText, billTitleText, price, priceText, quantity, quantityText, billList, billItemName, billPrice, billItem;
                         return __generator(this, function (_b) {
@@ -115,13 +127,15 @@ function loadCart() {
                                     billItem.appendChild(billList);
                                     billItemName.appendChild(billTitleText);
                                     billList.appendChild(billPrice);
-                                    BILL.appendChild(billItem);
+                                    billCat.appendChild(billItem);
                                     BAGINATION.appendChild(productDiv);
                                     addButton.addEventListener("click", function () {
                                         product.quantity += 1;
                                         localStorage.setItem("cart", JSON.stringify(cart2));
                                         quantity.innerText = product.quantity + " in bag";
                                         billList.innerText = "¥ " + product.price * 1500 + " x" + product.quantity;
+                                        totalCartSum += (product.price * 1500);
+                                        totalCartPrice.innerHTML = "BAG VALUE : ¥" + totalCartSum;
                                     });
                                     minusButton.addEventListener("click", function () {
                                         product.quantity -= 1;
@@ -133,6 +147,8 @@ function loadCart() {
                                         localStorage.setItem("cart", JSON.stringify(cart2));
                                         billList.innerText = "¥ " + product.price * 1500 + " x" + product.quantity;
                                         quantity.innerText = product.quantity + " in bag";
+                                        totalCartSum -= (product.price * 1500);
+                                        totalCartPrice.innerHTML = "BAG VALUE : ¥" + totalCartSum;
                                     });
                                     removeButton.addEventListener("click", function () {
                                         var productIndex = cart2.findIndex(function (product) { return product.id == product.id; });
@@ -142,6 +158,7 @@ function loadCart() {
                                         localStorage.setItem("cart", JSON.stringify(cart2));
                                         location.reload();
                                     });
+                                    totalCartSum += (product.price * 1500) * product.quantity;
                                     return [2 /*return*/];
                             }
                         });
@@ -157,7 +174,10 @@ function loadCart() {
                 case 3:
                     i++;
                     return [3 /*break*/, 1];
-                case 4: return [2 /*return*/];
+                case 4:
+                    totalCartPrice.innerHTML = "BAG VALUE : ¥" + totalCartSum;
+                    console.log(totalCartSum);
+                    return [2 /*return*/];
             }
         });
     });

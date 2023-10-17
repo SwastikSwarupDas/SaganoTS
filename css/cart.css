@@ -6,6 +6,18 @@
     overflow-x: hidden;
 }
 
+.fade_rule {
+  height: 1px;
+  background-color: #ffffff;
+  width: 20vw;
+  background-image: linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+  background-image: -o-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+  background-image: -moz-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+  background-image: -webkit-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+  background-image: -ms-linear-gradient(left , white 2%, #E6E6E6 50%, white 98%);
+  background-image: -webkit-gradient( linear, left bottom, right bottom, color-stop(0.02, white), color-stop(0.5, rgba(128, 128, 128, 0.323)), color-stop(0.98, white) );
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 0.4vw;
