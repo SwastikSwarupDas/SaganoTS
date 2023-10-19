@@ -41,6 +41,20 @@ var SEARCH_SELECT = document.createElement("div");
 var SEARCH_BAR = document.querySelector("form input");
 var PRODUCTROPICA = document.querySelector('.productropica');
 var PRODUCTASIA = document.createElement("div");
+var MAIN = document.querySelector('.main');
+var HAMBURG = document.querySelector('#hamburger');
+var LINKS = document.querySelector('.links');
+var flag = 0;
+HAMBURG.addEventListener("click", function () {
+    if (flag === 0) {
+        LINKS.style.display = "flex";
+        flag = 1;
+    }
+    else {
+        LINKS.style.display = "none";
+        flag = 0;
+    }
+});
 PRODUCTASIA.classList.add("productasia");
 // const WOMEN_PRODUCT_DISPLAY = document.querySelector('.womenProductDisplay') as HTMLBodyElement;
 console.log(PRODUCT_DISPLAY.innerText);
@@ -99,6 +113,7 @@ function loadMensClothes() {
                             var productTextDiv = document.createElement("div");
                             var quickViewDiv = document.createElement("div");
                             var qDivButton = document.createElement("button");
+                            var qViewDis = document.createElement("div");
                             var qDivButtonText = document.createTextNode("QUICK VIEW");
                             var titleText = document.createTextNode(element.title);
                             var priceText = document.createTextNode(element.price);
@@ -108,6 +123,7 @@ function loadMensClothes() {
                             title.classList.add("title-item");
                             quickViewDiv.classList.add("q-v-div");
                             qDivButton.classList.add("q-div-btn");
+                            qViewDis.classList.add("q-v-dis");
                             img.setAttribute("src", element.image);
                             img.classList.add("p-img");
                             // price.appendChild(priceText);
@@ -120,6 +136,7 @@ function loadMensClothes() {
                             title.appendChild(titleText);
                             productCards.appendChild(productTextDiv);
                             // productCards.appendChild(price);
+                            productCards.appendChild(qViewDis);
                             menProductDisplay.appendChild(productCards);
                             productCards.addEventListener("click", function () {
                                 window.location.href = "product.html?id=".concat(element.id);
@@ -129,20 +146,45 @@ function loadMensClothes() {
                     product.forEach(function (element) {
                         var productCards = document.createElement("div");
                         var imageHolder = document.createElement("div");
+                        var quickViewImageHolder = document.createElement("div");
                         var img = document.createElement("img");
+                        var imgQView = document.createElement("img");
                         var title = document.createElement("h1");
                         var productTextDiv = document.createElement("div");
                         var quickViewDiv = document.createElement("div");
                         var qDivButton = document.createElement("button");
+                        var qViewDis = document.createElement("div");
+                        var pQView = document.createElement("div");
+                        var productDescription = document.createElement("div");
+                        var category = document.createElement("div");
+                        var productTitle = document.createElement("div");
+                        var desc = document.createElement("div");
+                        var price = document.createElement("div");
+                        var productQuickView = document.createElement("div");
                         var qDivButtonText = document.createTextNode("QUICK VIEW");
                         var titleText = document.createTextNode(element.title);
+                        var categoryText = document.createTextNode(element.category);
+                        var productTitleText = document.createTextNode(element.title);
+                        var descText = document.createTextNode(element.description);
+                        var priceText = document.createTextNode("¥ " + element.price * 1500);
                         productTextDiv.classList.add("productTextDiv");
                         productCards.classList.add("products-cards");
                         imageHolder.classList.add("imageHolder");
                         title.classList.add("title-item");
                         quickViewDiv.classList.add("q-v-div");
                         qDivButton.classList.add("q-div-btn");
+                        qViewDis.classList.add("q-v-dis");
+                        pQView.classList.add("p-q-view");
+                        quickViewImageHolder.classList.add("q-v-img-holder");
+                        productDescription.classList.add("p-desc");
+                        category.classList.add("cat-p");
+                        productTitle.classList.add("p-title");
+                        desc.classList.add("desc");
+                        price.classList.add("price");
+                        productQuickView.classList.add("product-q-v");
                         img.setAttribute("src", element.image);
+                        imgQView.setAttribute("src", element.image);
+                        imgQView.classList.add("p-img-q-v");
                         img.classList.add("p-img");
                         imageHolder.appendChild(img);
                         imageHolder.appendChild(quickViewDiv);
@@ -152,7 +194,27 @@ function loadMensClothes() {
                         productTextDiv.appendChild(title);
                         title.appendChild(titleText);
                         productCards.appendChild(productTextDiv);
+                        quickViewImageHolder.appendChild(imgQView);
+                        desc.appendChild(descText);
+                        MAIN.appendChild(qViewDis);
+                        category.appendChild(categoryText);
+                        productTitle.appendChild(productTitleText);
+                        price.appendChild(priceText);
+                        productDescription.appendChild(category);
+                        productDescription.appendChild(productTitle);
+                        productDescription.appendChild(desc);
+                        productDescription.appendChild(price);
                         menProductDisplay.appendChild(productCards);
+                        qDivButton.addEventListener("mouseover", function () {
+                            qViewDis.style.display = "block";
+                            qViewDis.addEventListener("mouseleave", function () {
+                                qViewDis.style.display = "none";
+                            });
+                        });
+                        qViewDis.appendChild(productQuickView);
+                        productQuickView.appendChild(pQView);
+                        productQuickView.appendChild(productDescription);
+                        pQView.appendChild(quickViewImageHolder);
                         productCards.addEventListener("click", function () {
                             window.location.href = "product.html?id=".concat(element.id);
                         });

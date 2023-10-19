@@ -8,6 +8,24 @@ const PRODUCT_ID = URL_PARAMS.get('id');
 
 console.log(PRODUCT_ID);
 
+const HAMBURG2                           = document.querySelector('#hamburger') as HTMLDivElement;
+const LINKS2                             = document.querySelector('.links') as HTMLDivElement;
+
+let flag2:number=0;
+
+HAMBURG2.addEventListener("click",()=>{
+    if(flag2===0)
+    {
+        LINKS2.style.display = "flex";
+        flag2=1;
+    }
+    else
+    {
+        LINKS2.style.display = "none";
+        flag2=0;
+    }
+})
+
 async function loadProduct(PRODUCT_ID   : string | null ) : Promise<void> {
     
     console.log(PRODUCT_ID);

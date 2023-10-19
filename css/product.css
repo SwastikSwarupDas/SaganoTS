@@ -238,4 +238,251 @@ footer h1{
       display: flex;
       gap: 3vw;
 }
+
+.flextop #hamburgerInvisible{
+    display: none;
+  }
+  
+  .flextop #hamburger{
+    display: none;
+  }
+
+@media (max-width:600px){
+    ::-webkit-scrollbar {
+        width: 0.4vw;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      
+      .main{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .flextop{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0vw 5vw;
+      }
+      
+      .flextop #hamburgerInvisible{
+        display: block;
+        visibility: hidden;
+      }
+      
+      .flextop #hamburger{
+        font-size: 5vw;
+      }
+
+      nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.3vw 2vw;
+        background-color: #fff;
+        overflow: hidden;
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.01);
+      }
+
+      nav .logo{
+        display: flex;
+        align-items: center;
+      }
+      
+      nav .logo h1{
+        font-size: 10vw;
+        font-weight: 100;
+      }
+
+      nav .logo h1 a{
+        text-decoration: none;
+        color: #000;
+      }
+      
+      .links{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        padding: 4vw 0;
+        gap: 2vw;
+      }
+
+      .links a{
+        margin: 1.2vw;
+        color: rgb(119, 119, 119);
+        font-size: 5vw;
+        letter-spacing: 0.2vw;
+        text-decoration: none;
+      }
+
+      .flextop #hamburger{
+        display: block;
+      }
+
+      .product{
+        margin-top      : 15vw;
+        display         : flex;
+        flex-direction  : column;
+        gap             : 2vw;
+        align-items     : center;
+        justify-content : space-evenly;
+    }
+
+    .p-img-main{
+        width           : 85vw;
+    }
+
+    .p-img{
+        display         : flex ;
+        align-items     : center;
+        width           : max-content;
+    }
+
+    .p-desc{
+        display         : flex;
+        width           : 100vw;
+        flex-direction  : column;
+        padding         : 6vw 7vw;
+        gap             : 4vw;
+    }
+
+    .cat-p{
+        font-size       : 4vw ;
+        font-weight     : 100;
+        letter-spacing  : 0.2vw;
+        color           : rgb(120,150,150) ;
+    }
+    
+    .p-title{
+        font-size       : 7.5vw ;
+        letter-spacing  : 0.1vw ;
+    }
+    
+    .desc{
+        color           : rgb(90,90,90) ;
+        font-size       : 4vw ;
+        line-height     : 6vw;
+    }
+
+    .price{
+        font-size       : 7vw;
+        color           : rgb(50, 50, 50);
+        letter-spacing  : 0.5vw;
+    }
+
+    .bag-btn{
+        align-self: center;
+        width           : 85vw;
+        background-color: #fff;
+        padding         : 3vw 3vw;
+        border          : 2px solid rgba(110, 160, 160, 0.711);
+        border-radius   : 20px ;
+        font-size       : 5vw;
+        color           : rgba(49, 49, 49, 0.914);
+    }
+
+    .p-qty{
+        font-size       : 5vw;
+        align-self      :center;
+        letter-spacing  : 0.1vw ;
+        color           : rgba(40, 40, 40, 0.807) ;
+    }
+
+    .catLabels{
+        font-size: 5vw;
+        margin: 2vw 0vw 1vw 3vw;
+        font-weight: 200;
+        color: rgba(0,0,0,0.5);
+      }
+
+    footer{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+        background-color: rgb(246, 246, 246);
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 4vw 1vw;
+        backdrop-filter: blur(5px);
+        gap: 5vw;
+    }
+    
+    footer h1{
+      font-size: 8vw;
+    }
+    
+    .right{
+        font-size: 2.8vw;
+        display: flex;
+        align-items: center;
+        gap: 10vw;
+    }
+    
+    .right div{
+      display: flex;
+      align-items: center;
+    }
+
+    .title-item{
+        font-size: 3.5vw;
+      }
+
+    .p-img-cat-bottom{
+        width: 30vw;
+      }
+    
+
+    .imageHolder{
+        margin: 0vw 5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-y: hidden;
+      }
+
+    .products-cards{
+        width: 45vw;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap:2vw;
+        padding: 2vw 4vw;
+        margin: 0.8vw 0;
+        border-radius: 2rem;
+        transform: scale(1);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+
+    .menProductDisplay, .womenProductDisplay{
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin-bottom: 4vw;
+        overflow-y: hidden;
+    }
+}
   

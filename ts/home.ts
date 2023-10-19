@@ -5,6 +5,24 @@ const SEARCH_SELECT : HTMLDivElement    = document.createElement("div");
 const SEARCH_BAR                        = document.querySelector("form input") as HTMLInputElement;
 const PRODUCTROPICA                     = document.querySelector('.productropica') as HTMLBodyElement;
 const PRODUCTASIA   : HTMLDivElement    = document.createElement("div");
+const MAIN                              = document.querySelector('.main') as HTMLBodyElement;
+const HAMBURG                           = document.querySelector('#hamburger') as HTMLDivElement;
+const LINKS                             = document.querySelector('.links') as HTMLDivElement;
+
+let flag:number=0;
+
+HAMBURG.addEventListener("click",()=>{
+    if(flag===0)
+    {
+        LINKS.style.display = "flex";
+        flag=1;
+    }
+    else
+    {
+        LINKS.style.display = "none";
+        flag=0;
+    }
+})
 
 PRODUCTASIA.classList.add("productasia");
 
@@ -71,22 +89,26 @@ async function loadMensClothes(): Promise<void> {
             let productTextDiv  : HTMLDivElement        = document.createElement("div");
             let quickViewDiv    : HTMLDivElement        = document.createElement("div");
             let qDivButton      : HTMLButtonElement     = document.createElement("button");
+            let qViewDis        : HTMLDivElement        = document.createElement("div");
             let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
             let titleText       : Text                  = document.createTextNode(element.title);
             let priceText       : Text                  = document.createTextNode(element.price);
+            
 
-
+            
             productTextDiv.classList.add("productTextDiv");
             productCards.classList.add("products-cards");
             imageHolder.classList.add("imageHolder");
             title.classList.add("title-item");
             quickViewDiv.classList.add("q-v-div");
             qDivButton.classList.add("q-div-btn");
+            qViewDis.classList.add("q-v-dis");
 
             img.setAttribute("src",element.image);
             img.classList.add("p-img");
 
             // price.appendChild(priceText);
+
             imageHolder.appendChild(img);
             imageHolder.appendChild(quickViewDiv);
             quickViewDiv.appendChild(qDivButton);
@@ -96,7 +118,8 @@ async function loadMensClothes(): Promise<void> {
             title.appendChild(titleText);
             productCards.appendChild(productTextDiv);
             // productCards.appendChild(price);
-
+            
+            productCards.appendChild(qViewDis);
             menProductDisplay.appendChild(productCards);
 
             productCards.addEventListener("click", () => {
@@ -112,13 +135,27 @@ async function loadMensClothes(): Promise<void> {
     
         let productCards    : HTMLDivElement        = document.createElement("div");
         let imageHolder     : HTMLDivElement        = document.createElement("div");
+        let quickViewImageHolder     : HTMLDivElement        = document.createElement("div");
         let img             : HTMLImageElement      = document.createElement("img");
+        let imgQView        : HTMLImageElement      = document.createElement("img");
         let title           : HTMLHeadingElement    = document.createElement("h1");
         let productTextDiv  : HTMLDivElement        = document.createElement("div");
         let quickViewDiv    : HTMLDivElement        = document.createElement("div");
         let qDivButton      : HTMLButtonElement     = document.createElement("button");
+        let qViewDis        : HTMLDivElement        = document.createElement("div");
+        let pQView          : HTMLDivElement        = document.createElement("div");
+        let productDescription  : HTMLDivElement    = document.createElement("div");
+        let category            : HTMLDivElement    = document.createElement("div");
+        let productTitle        : HTMLDivElement    = document.createElement("div");
+        let desc                : HTMLDivElement    = document.createElement("div");
+        let price               : HTMLDivElement    = document.createElement("div");
+        let productQuickView    : HTMLDivElement    = document.createElement("div");
         let qDivButtonText  : Text                  = document.createTextNode("QUICK VIEW");
         let titleText       : Text                  = document.createTextNode(element.title);
+        let categoryText        : Text              = document.createTextNode(element.category);
+        let productTitleText    : Text              = document.createTextNode(element.title);
+        let descText            : Text              = document.createTextNode(element.description);
+        let priceText           : Text              = document.createTextNode("¥ " + element.price * 1500);
 
         productTextDiv.classList.add("productTextDiv");
         productCards.classList.add("products-cards");
@@ -126,8 +163,19 @@ async function loadMensClothes(): Promise<void> {
         title.classList.add("title-item");
         quickViewDiv.classList.add("q-v-div");
         qDivButton.classList.add("q-div-btn");
+        qViewDis.classList.add("q-v-dis");
+        pQView.classList.add("p-q-view");
+        quickViewImageHolder.classList.add("q-v-img-holder");
+        productDescription.classList.add("p-desc");
+        category.classList.add("cat-p");
+        productTitle.classList.add("p-title");
+        desc.classList.add("desc");
+        price.classList.add("price");
+        productQuickView.classList.add("product-q-v");
 
         img.setAttribute("src",element.image);
+        imgQView.setAttribute("src",element.image);
+        imgQView.classList.add("p-img-q-v");
         img.classList.add("p-img");
 
         imageHolder.appendChild(img);
@@ -138,8 +186,31 @@ async function loadMensClothes(): Promise<void> {
         productTextDiv.appendChild(title);
         title.appendChild(titleText);
         productCards.appendChild(productTextDiv);
+        quickViewImageHolder.appendChild(imgQView);
+        desc.appendChild(descText);
+        MAIN.appendChild(qViewDis);
+
+        category.appendChild(categoryText);
+        productTitle.appendChild(productTitleText);
+        price.appendChild(priceText);
+        productDescription.appendChild(category);
+        productDescription.appendChild(productTitle);
+        productDescription.appendChild(desc);
+        productDescription.appendChild(price);
 
         menProductDisplay.appendChild(productCards);
+
+        qDivButton.addEventListener("mouseover",()=>{
+            qViewDis.style.display="block";
+            qViewDis.addEventListener("mouseleave",()=>{
+                qViewDis.style.display="none";
+            })
+        })
+
+        qViewDis.appendChild(productQuickView);
+        productQuickView.appendChild(pQView);
+        productQuickView.appendChild(productDescription);
+        pQView.appendChild(quickViewImageHolder);
 
         productCards.addEventListener("click", () => {
             window.location.href = `product.html?id=${element.id}`;

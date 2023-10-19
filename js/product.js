@@ -41,6 +41,19 @@ var MEN_PRODUCT_DISPLAY2 = document.querySelector('.menProductDisplay');
 var URL_PARAMS = new URLSearchParams(window.location.search);
 var PRODUCT_ID = URL_PARAMS.get('id');
 console.log(PRODUCT_ID);
+var HAMBURG2 = document.querySelector('#hamburger');
+var LINKS2 = document.querySelector('.links');
+var flag2 = 0;
+HAMBURG2.addEventListener("click", function () {
+    if (flag2 === 0) {
+        LINKS2.style.display = "flex";
+        flag2 = 1;
+    }
+    else {
+        LINKS2.style.display = "none";
+        flag2 = 0;
+    }
+});
 function loadProduct(PRODUCT_ID) {
     var _a;
     return __awaiter(this, void 0, void 0, function () {
